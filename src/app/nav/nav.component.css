@@ -27,7 +27,10 @@ mat-nav-list a{
   top: 0;
   z-index: 1;
 }
-
+.masthead .masthead-heading {
+  font-size: 2.5rem;
+  line-height: 2.5rem;
+}
 .navColor{
   background-color: #283747;
   font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
@@ -46,6 +49,14 @@ mat-nav-list a{
   border-radius: 50%;
   margin-top: 10px;
 }
+
+.navbar-brand{
+  display: flex;
+  
+}
+
+
+
 
 
 

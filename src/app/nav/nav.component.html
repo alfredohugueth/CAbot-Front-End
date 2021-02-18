@@ -8,16 +8,18 @@
       <a mat-list-item href="#">Sobre nosotros</a>
     </mat-nav-list>
   </mat-sidenav>
-  <mat-sidenav-content>
+  <mat-sidenav-content class="responsive">
     <mat-toolbar class="navColor">
       <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
         *ngIf="isHandset$ | async">
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <div class="logo">
-         <img class="logo2" src="../../assets/imagenes/Logo.png">
+      <div class="navbar navbar-light bg-blue">
+        <a class="navbar-brand text-uppercase text-white" routerLink="/home" >
+          <img src="../../assets/imagenes/TOCLICK.png" width="45" height="45" class="d-inline-block align-top" alt="">
+          CAbot. Tu asistente de control automático.
+        </a>
       </div>
-      <span>CAbot. Asistente Control</span>
     </mat-toolbar>
     <div class="fondo">
     <router-outlet></router-outlet>
