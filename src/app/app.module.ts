@@ -15,12 +15,18 @@ import { MatListModule } from '@angular/material/list';
 import { HomeComponent } from './home/home.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
-import { MatMenuModule } from '@angular/material/menu'
+import { MatMenuModule } from '@angular/material/menu';
+import { FooterComponent } from './components/footer/footer.component';
+import { AboutUsComponent } from './components/about-us/about-us.component';
+import { CommonQuestionsComponent } from './components/common-questions/common-questions.component'
 @NgModule({
   declarations: [
     AppComponent,
     NavComponent,
-    HomeComponent
+    HomeComponent,
+    FooterComponent,
+    AboutUsComponent,
+    CommonQuestionsComponent
   ],
   imports: [
     BrowserModule,

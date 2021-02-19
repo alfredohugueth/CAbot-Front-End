@@ -1,58 +1,60 @@
-mat-toolbar{
-  color: #f3f3f3;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  font-weight: bold;
-}
-
-mat-nav-list a{
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  color: #f3f3f3;
-
-}
-
 .sidenav-container {
   height: 100%;
 }
 
 .sidenav {
   width: 200px;
+  box-shadow: 3px 0 6px rgba(0,0,0,.24);
 }
+
 
 .sidenav .mat-toolbar {
   background: inherit;
 }
 
+
+.heredero{
+  color: inherit;
+  font-weight: inherit;
+  font-style: inherit;
+  font-weight: inherit;
+}
+@media (min-width:768px){
+  .sidenav{
+  display: none;
+  }
+}
+@media (max-width:768px){
+  .navPri{
+    display: none;
+  }
+}
 .mat-toolbar.mat-primary {
   position: sticky;
   top: 0;
   z-index: 1;
 }
-.masthead .masthead-heading {
-  font-size: 2.5rem;
-  line-height: 2.5rem;
+
+.container{
+  width: 100%;
+  padding-right: 1.5rem;
+  padding-left: 1.5rem;
+  margin-right: auto;
+  margin-left: auto;
 }
-.navColor{
+
+.FondoNav{
   background-color: #283747;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-  color: #f3f3f3;
+  color: white;
+  font-weight: bold;
 }
 
-.logo{
-  width: 10%;
-  height: 100%;
-  border-radius: 50%;
+.espacio{
+  padding: 5px;
 }
 
-.logo2{
-  width: 80%;
-  height: 70%;
-  border-radius: 50%;
-  margin-top: 10px;
-}
-
-.navbar-brand{
-  display: flex;
-  
+.space{
+  flex: 1 1 auto;
 }
 
 

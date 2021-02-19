@@ -1,28 +1,30 @@
 <mat-sidenav-container class="sidenav-container">
-  <mat-sidenav #drawer class="sidenav navColor" fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+  <mat-sidenav #drawer class="sidenav FondoNav"
+  fixedInViewport [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
     [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
-    <mat-toolbar>Menu</mat-toolbar>
-    <mat-nav-list class="navColor">
-      <a mat-list-item routerLink="/home">Inicio</a>
-      <a mat-list-item href="#">Preguntas más frecuentes </a>
-      <a mat-list-item href="#">Sobre nosotros</a>
+    <mat-toolbar class="text-white text-uppercase font-weight-bold">Menú</mat-toolbar>
+    <mat-nav-list>
+      <a mat-list-item routerLink="/home" class="text-white text-uppercase font-weight-bold"> <mat-icon>home</mat-icon> Inicio</a>
+      <a mat-list-item routerLink="/questions" class="text-white text-uppercase font-weight-bold"> <mat-icon>contact_support</mat-icon>Preguntas frecuentes </a>
+      <a mat-list-item routerLink="/about-us" class="text-white text-uppercase font-weight-bold"> <mat-icon>face</mat-icon>Nosotros</a>
     </mat-nav-list>
   </mat-sidenav>
-  <mat-sidenav-content class="responsive">
-    <mat-toolbar class="navColor">
+  <mat-sidenav-content>
+    <mat-toolbar class="FondoNav">
       <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()"
-        *ngIf="isHandset$ | async">
+        *ngIf="isHandset$ | async" else menuPrincipal>
         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
       </button>
-      <div class="navbar navbar-light bg-blue">
-        <a class="navbar-brand text-uppercase text-white" routerLink="/home" >
-          <img src="../../assets/imagenes/TOCLICK.png" width="45" height="45" class="d-inline-block align-top" alt="">
-          CAbot. Tu asistente de control automático.
-        </a>
+      <span><img class="espacio" src="../../assets/imagenes/Logo.png">CAbot</span>
+      <div class="space"></div>
+      <div class="navPri">
+        <a mat-button routerLink="/home"> <mat-icon>home</mat-icon>Inicio</a>
+        <a mat-button routerLink="/questions"> <mat-icon>contact_support</mat-icon>Preguntas Frecuentes</a>
+        <a mat-button routerLink="/about-us"> <mat-icon>face</mat-icon>Nosotros</a>
       </div>
-    </mat-toolbar>
-    <div class="fondo">
+      </mat-toolbar>
+    
     <router-outlet></router-outlet>
-    </div>
+   
   </mat-sidenav-content>
 </mat-sidenav-container>
