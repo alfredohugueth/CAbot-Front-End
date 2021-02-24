@@ -18,7 +18,10 @@ import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { FooterComponent } from './components/footer/footer.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
-import { CommonQuestionsComponent } from './components/common-questions/common-questions.component'
+import { PreguntasComponent } from './components/preguntas/preguntas.component';
+import { ChatBoxComponent } from './components/chat-box/chat-box.component';
+import { HttpClientModule } from '@angular/common/http';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -26,7 +29,8 @@ import { CommonQuestionsComponent } from './components/common-questions/common-q
     HomeComponent,
     FooterComponent,
     AboutUsComponent,
-    CommonQuestionsComponent
+    PreguntasComponent,
+    ChatBoxComponent
   ],
   imports: [
     BrowserModule,
@@ -40,7 +44,8 @@ import { CommonQuestionsComponent } from './components/common-questions/common-q
     MatListModule,
     MatGridListModule,
     MatCardModule,
-    MatMenuModule
+    MatMenuModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

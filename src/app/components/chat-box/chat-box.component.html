@@ -1,0 +1,79 @@
+<div class="container">
+    <div class="headerM">
+
+        <div class="headerM-img">
+            <img src="../../../assets/imagenes/TOCLICK.png">
+        </div>
+
+        <div class="activo">
+            <h4> CAbot </h4>
+            <h6> Disponible</h6>
+        </div>
+
+
+    </div>
+
+    <div class="chat-p">
+        <div class="caja-mensajes">
+            <div class="chats">
+                <div class="msg">
+                    <div class="boot-msg" *ngFor="let msgBoot of arrMensajesBot">
+                        <!-- Poner ngFor aca para mensajes del boot -->
+                        <div class="boot-img">
+                            <img src="../../../assets/imagenes/TOCLICK.png">
+                        </div>
+
+                        <div class="boot-text">
+                            <div class="boot-text-inbox">
+                                <p> {{ msgBoot.texto }}</p>
+                                <span class="tiempo"> 11:01 PM | Octubre 2021 </span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="user-msg">
+                        <!-- Poner ngFor aca para mensajes del usuario -->
+
+                        <div class="user-img">
+                            <img src="../../../assets/imagenes/Luis.jpeg">
+                        </div>
+                        <div class="user-text">
+                            <div class="user-text-inbox">
+                                <p> Hola, soy el usuario, quiero preguntarte algo</p>
+                                <span class="tiempo"> 11:01 PM | Octubre 2021 </span>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+
+
+
+
+
+
+
+                </div>
+
+
+            </div>
+            <div class="chat-botton">
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Escriba su pregunta...">
+                    <div class="input-group-append">
+                        <button class="btn btn-secundary">
+                            <mat-icon> record_voice_over </mat-icon>
+                        </button>
+                        <button class="btn btn-primary">
+                            <mat-icon>send</mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
