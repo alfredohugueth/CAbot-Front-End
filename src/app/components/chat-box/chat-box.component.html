@@ -16,31 +16,31 @@
     <div class="chat-p">
         <div class="caja-mensajes">
             <div class="chats">
-                <div class="msg">
-                    <div class="boot-msg" *ngFor="let msgBoot of arrMensajesBot">
+                <div class="msg" *ngFor="let respuesta of respuestas">
+                    <div class="boot-msg">
                         <!-- Poner ngFor aca para mensajes del boot -->
                         <div class="boot-img">
                             <img src="../../../assets/imagenes/TOCLICK.png">
                         </div>
 
-                        <div class="boot-text">
+                        <div class="boot-text" *ngIf="respuesta.boot.estado">
                             <div class="boot-text-inbox">
-                                <p> {{ msgBoot.texto }}</p>
+                                <p> {{ respuesta.boot.texto }}</p>
                                 <span class="tiempo"> 11:01 PM | Octubre 2021 </span>
                             </div>
                         </div>
 
                     </div>
 
-                    <div class="user-msg">
+                    <div class="user-msg" *ngIf="respuesta.user.estado">
                         <!-- Poner ngFor aca para mensajes del usuario -->
 
                         <div class="user-img">
-                            <img src="../../../assets/imagenes/Luis.jpeg">
+                            <img src="../../../assets/imagenes/Alfredo.jpg">
                         </div>
                         <div class="user-text">
                             <div class="user-text-inbox">
-                                <p> Hola, soy el usuario, quiero preguntarte algo</p>
+                                <p> {{ respuesta.user.texto }}</p>
                                 <span class="tiempo"> 11:01 PM | Octubre 2021 </span>
                             </div>
                         </div>
@@ -61,17 +61,17 @@
 
             </div>
             <div class="chat-botton">
-                <div class="input-group">
-                    <input type="text" class="form-control" placeholder="Escriba su pregunta...">
+                <form class="input-group" [formGroup]="formularioMensajes" (ngSubmit)="enviarMensaje()">
+                    <input type="text" class="form-control" placeholder="Escriba su pregunta..." formControlName="texto">
                     <div class="input-group-append">
                         <button class="btn btn-secundary">
                             <mat-icon> record_voice_over </mat-icon>
                         </button>
-                        <button class="btn btn-primary">
+                        <button class="btn btn-primary" type="submit">
                             <mat-icon>send</mat-icon>
                         </button>
                     </div>
-                </div>
+                </form>
             </div>
 
         </div>

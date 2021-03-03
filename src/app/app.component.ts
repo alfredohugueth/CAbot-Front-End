@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-
+import { SendMsgsService } from './services/send-msgs.service'
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -7,4 +7,12 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'CAbot-front-end';
+  userID: string;
+
+  constructor(sendMsService: SendMsgsService){
+
+    sendMsService.generateID();
+
+  }
+  
 }
