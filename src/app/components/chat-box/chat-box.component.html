@@ -14,9 +14,9 @@
     </div>
 
     <div class="chat-p">
-        <div class="caja-mensajes">
+        <cdk-virtual-scroll-viewport itemSize="20vh" class="caja-mensajes">
             <div class="chats">
-                <div class="msg" *ngFor="let respuesta of respuestas">
+                <div class="msg" *ngFor="let respuesta of respuestas;">
                     <div class="boot-msg">
                         <!-- Poner ngFor aca para mensajes del boot -->
                         <div class="boot-img">
@@ -26,7 +26,7 @@
                         <div class="boot-text" *ngIf="respuesta.boot.estado">
                             <div class="boot-text-inbox">
                                 <p> {{ respuesta.boot.texto }}</p>
-                                <span class="tiempo"> 11:01 PM | Octubre 2021 </span>
+                                <span class="tiempo"> {{ respuesta.boot.fecha | date:'short' }} </span>
                             </div>
                         </div>
 
@@ -41,9 +41,13 @@
                         <div class="user-text">
                             <div class="user-text-inbox">
                                 <p> {{ respuesta.user.texto }}</p>
-                                <span class="tiempo"> 11:01 PM | Octubre 2021 </span>
+                                <span class="tiempo"> {{ respuesta.user.fecha | date:'short' }} </span>
                             </div>
                         </div>
+
+
+
+
 
 
                     </div>
@@ -60,20 +64,27 @@
 
 
             </div>
-            <div class="chat-botton">
-                <form class="input-group" [formGroup]="formularioMensajes" (ngSubmit)="enviarMensaje()">
-                    <input type="text" class="form-control" placeholder="Escriba su pregunta..." formControlName="texto">
-                    <div class="input-group-append">
-                        <button class="btn btn-secundary">
-                            <mat-icon> record_voice_over </mat-icon>
-                        </button>
-                        <button class="btn btn-primary" type="submit">
-                            <mat-icon>send</mat-icon>
-                        </button>
-                    </div>
+
+
+        </cdk-virtual-scroll-viewport>
+
+    </div>
+
+    <div class="chat-botton">
+        <form class="input-group" [formGroup]="formularioMensajes" (ngSubmit)="enviarMensaje()">
+            <input type="text" class="form-control" placeholder="Escriba su pregunta..." formControlName="texto">
+            <div class="input-group-append">
+                <form (submit)="pararGrabar()">
+                    <button class="btn btn-success" (click)="grabar()" *ngIf="!recording">
+                        <mat-icon> record_voice_over </mat-icon>
+                    </button>
+                    <button type="submit" class="btn btn-danger" (click)="pararGrabar()" *ngIf="recording">
+                        <mat-icon> record_voice_over </mat-icon>
+                    </button>
                 </form>
+                <button class="btn btn-primary" type="submit">
+                    <mat-icon>send</mat-icon>
+                </button>
             </div>
-
-        </div>
-
+        </form>
     </div>

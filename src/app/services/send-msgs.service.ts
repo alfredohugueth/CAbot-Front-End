@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
+import { FormGroup } from '@angular/forms';
 
 @Injectable({
   providedIn: 'root'
@@ -31,5 +32,20 @@ export class SendMsgsService {
         .substring(1);
     }
     this.userID =  s4() + s4()
+  }
+  audioFormat(audio:any,){
+    const formData = new FormData();
+    formData.append('pregunta',audio,'audio.wav');
+    console.log(formData.get('pregunta'));
+    const bodyRequest = {audio};
+    console.log(bodyRequest);
+    return formData.get('pregunta') 
+
+    //return this.httpClient.post<any>(`${this.baseUrl}/botmsg/audio`,formData.get('pregunta')).toPromise();
+  }
+
+  async sendAudio(formAudio:any): Promise<any>{
+    let bodyRequest = {formAudio}
+    return this.httpClient.post<any>(`${this.baseUrl}/botmsg/audio`,formAudio).toPromise();
   }
 }

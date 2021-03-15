@@ -1,10 +1,13 @@
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ReactiveFormsModule } from '@angular/forms'
+
+import localeEs from '@angular/common/locales/es'
+import { registerLocaleData } from '@angular/common'
 
 import { MatButtonModule } from '@angular/material/button';
 import { NavComponent } from './nav/nav.component';
@@ -22,6 +25,9 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
 import { PreguntasComponent } from './components/preguntas/preguntas.component';
 import { ChatBoxComponent } from './components/chat-box/chat-box.component';
 import { HttpClientModule } from '@angular/common/http';
+import { ScrollingModule } from '@angular/cdk/scrolling'
+
+registerLocaleData(localeEs);
 
 @NgModule({
   declarations: [
@@ -47,9 +53,12 @@ import { HttpClientModule } from '@angular/common/http';
     MatCardModule,
     MatMenuModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ScrollingModule
   ],
-  providers: [],
+  providers: [{
+    provide: LOCALE_ID, useValue: 'es-ES'
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
