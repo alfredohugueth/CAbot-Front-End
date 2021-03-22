@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container shadow">
     <div class="headerM">
 
         <div class="headerM-img">
@@ -13,34 +13,34 @@
 
     </div>
 
-    <div class="chat-p">
+    <div class="chat-p shadow">
         <cdk-virtual-scroll-viewport itemSize="20vh" class="caja-mensajes">
             <div class="chats">
                 <div class="msg" *ngFor="let respuesta of respuestas;">
                     <div class="boot-msg">
                         <!-- Poner ngFor aca para mensajes del boot -->
                         <div class="boot-img">
-                            <img src="../../../assets/imagenes/TOCLICK.png">
+                            <img class='shadow' src="../../../assets/imagenes/TOCLICK.png">
                         </div>
 
-                        <div class="boot-text" *ngIf="respuesta.boot.estado">
+                        <div class="boot-text " *ngIf="respuesta.boot.estado">
                             <div class="boot-text-inbox">
-                                <p> {{ respuesta.boot.texto }}</p>
+                                <p class='shadow'> {{ respuesta.boot.texto }}</p>
                                 <span class="tiempo"> {{ respuesta.boot.fecha | date:'short' }} </span>
                             </div>
                         </div>
 
                     </div>
 
-                    <div class="user-msg" *ngIf="respuesta.user.estado">
+                    <div class="user-msg " *ngIf="respuesta.user.estado">
                         <!-- Poner ngFor aca para mensajes del usuario -->
 
-                        <div class="user-img">
-                            <img src="../../../assets/imagenes/Alfredo.jpg">
+                        <div class="user-img ">
+                            <img class='shadow' src="../../../assets/imagenes/Alfredo.jpg">
                         </div>
                         <div class="user-text">
                             <div class="user-text-inbox">
-                                <p> {{ respuesta.user.texto }}</p>
+                                <p class='shadow'> {{ respuesta.user.texto }}</p>
                                 <span class="tiempo"> {{ respuesta.user.fecha | date:'short' }} </span>
                             </div>
                         </div>

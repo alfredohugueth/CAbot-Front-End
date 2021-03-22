@@ -1,10 +1,4 @@
-.container{
-    width: 100%;
-    padding-right: 1.5rem;
-    padding-left: 1.5rem;
-    margin-right: auto;
-    margin-left: auto;
-  }
+
 @media (min-width:768px){
     .limites{
       max-width: 90%;
@@ -15,3 +9,18 @@
        
     }
   }
+
+.imagenesSlider{
+  height: auto;
+  width: 100%;
+}
+
+.imagenesDesarrolladores{
+  /* background-image: url('../../../assets/imagenes/Alfredo.jpg'); */
+  height: fit-content;
+  width: fit-content;
+  display: block;
+  margin: auto;
+  
+
+}

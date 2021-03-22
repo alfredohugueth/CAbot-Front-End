@@ -1,34 +1,29 @@
 
-<div class="container">
-    <h1 class="display-1 "> ¿Quienes somos?</h1>
-    <div class="row">
-        <div class="col-sm-6">
-            <img class="img-fluid rounded-circle limites" src="../../../assets/imagenes/Alfredo.jpg" alt="Imagen de Alfredo">
-        </div>
 
+ <!-- Corregir los imagenes de cada src, solucionara el problema -->
+<div class='container-fluid'>
+<ngb-carousel *ngIf="imagenes">
+    <ng-template ngbSlide>
+      <div class="picsum-img-wrapper img-flui">
+        <img class='imagenesDesarrolladores img-fluid' src="../../../assets/imagenes/Alfredo.jpg" alt="Slide Presentacion Alfredo Hugueth"> -->
         
-        <div class="col-sm-4 text-black text-left">
-            <p class="h4 margen"> Alfredo Hugueth Polo es el ingeniero electrónico encargado de la programación 
-                de la pagina web utilizando el stack MEAN 
-            </p>
-            <p class="h5 ">Contacto: alfredohugueth99@gmail.com</p>
-        </div>
-
-    </div>
-
-    <div class="row">
-        <div class="col-sm-4 text-black text-right">
-            <p class="h4 margen"> Luis Gómez Castro es el ingeniero electrónico 
-                encargado del entrenamiento de la IA utilizando DialogFlow 
-            </p>
-            <p class="h5 ">Contacto: egluis@uninorte.edu.co</p>
-        </div>
-
-        
-        <div class="col-sm-6">
-            
-            <img class="img-fluid rounded-circle limites" src="../../../assets/imagenes/Luis.jpeg" alt="Imagen de Luis">
-        </div>
-
-    </div>
+      </div>
+      <div class="carousel-caption">
+        <h3>Alfredo Hugueth Polo</h3>
+        <p>Ingeniero electrónico encargado de la programación 
+          de la pagina web</p>
+        <p class='h6'>Contacto: alfredohugueth99@gmail.com</p>
+      </div>
+    </ng-template>
+    <ng-template ngbSlide>
+      <div class="picsum-img-wrapper img-flui">
+        <img class='imagenesDesarrolladores img-fluid' src="../../../assets/imagenes/Luis.jpeg" alt="Slide Presentacion Luis Gomez">
+      </div>
+      <div class="carousel-caption">
+        <h3>Luis Gómez Castro</h3>
+        <p>ingeniero electrónico encargado del entrenamiento de la IA utilizando DialogFlow</p>
+        <p class='h6'>Contacto: egluis@uninorte.edu.co</p>
+      </div>
+    </ng-template>
+  </ngb-carousel>
 </div>

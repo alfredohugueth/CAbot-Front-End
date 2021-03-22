@@ -25,7 +25,9 @@ import { AboutUsComponent } from './components/about-us/about-us.component';
 import { PreguntasComponent } from './components/preguntas/preguntas.component';
 import { ChatBoxComponent } from './components/chat-box/chat-box.component';
 import { HttpClientModule } from '@angular/common/http';
-import { ScrollingModule } from '@angular/cdk/scrolling'
+import { ScrollingModule } from '@angular/cdk/scrolling';
+import { ChartsComponent } from './components/charts/charts.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 registerLocaleData(localeEs);
 
@@ -37,7 +39,8 @@ registerLocaleData(localeEs);
     FooterComponent,
     AboutUsComponent,
     PreguntasComponent,
-    ChatBoxComponent
+    ChatBoxComponent,
+    ChartsComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +57,8 @@ registerLocaleData(localeEs);
     MatMenuModule,
     HttpClientModule,
     ReactiveFormsModule,
-    ScrollingModule
+    ScrollingModule,
+    NgbModule
   ],
   providers: [{
     provide: LOCALE_ID, useValue: 'es-ES'

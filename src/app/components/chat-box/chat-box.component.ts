@@ -48,49 +48,63 @@ export class ChatBoxComponent implements OnInit {
       estado: new FormControl(true),
       emisor: new FormControl('usuario'),
       texto: new FormControl(''),
-      userid: new FormControl(this.userID)
+      userid: new FormControl(this.userID),
+      fechauser: new FormControl()
 
     });
     this.EntradaAudio = new FormGroup({
       audioFile:new FormControl()
     })
     this.userID = sendMsgServ.userID;
-    console.log(this.userID);
-    console.log(this.recording);
-    console.log(this.scroll);
   }
   sanitize(url:string){
     console.log(this.domSanitizer.bypassSecurityTrustUrl(url));
     return this.domSanitizer.bypassSecurityTrustUrl(url);
 }
 
-  ngOnInit(): void {
+  async ngOnInit(): Promise<void> {
+    //Analizo si tengo datos guardados en mi local storage...
+    let almacenaje = localStorage.getItem('BufferRespuestas');
+    if(almacenaje === undefined || almacenaje == null){
+      //Significa que no tenemos ningun dato guardado en nuestra base de datos local...
+      console.log('Entramos a condicional para crear el item del localstorage...');
+      //Recibimos mensaje de la base de datos... 
+      var PrimerMensaje = await this.sendMsgServ.recieveMsg();
+      this.respuestas.push(PrimerMensaje);
+      console.log("Se realizo el push del primer mensaje de manera correcta, almacenamos respuesta en el local storage..");
+      localStorage.setItem('BufferRespuestas',JSON.stringify(this.respuestas));
+      console.log("Primer seteo de local storage exitoso");
+    }else{
+      // Buscamos el valor del local storage de las preguntas que se han realizado..
+      console.log('Entramos al else, se hace el codicional de llamar a las respuestas almacenadas en el local storage');
+      this.respuestas = JSON.parse(localStorage.getItem('BufferRespuestas'));
+      this.scrollAlUltimoMensaje();
+      //Ahora realizamos condicionales para guardar cada nueva pregunta en el local storage
+    }
+    console.log(this.userID);
+    // Recibo el mensaje predeterminado de mis datos.
     
-    this.sendMsgServ.recieveMsg()
-      .then(msgs => {
-        this.respuestas.push(msgs);
-        console.log(msgs);
-        //this.arrMensajesBot.push(msgs)
-      })
-      .catch(error => console.log(error));
   }
   ngAfterViewChecked(){
     this.scroll = this.viewport.getElementRef;
-    console.log(this.scroll);
   }
 
   async enviarMensaje(){
     this.respuestas[this.contador].user.texto = this.formularioMensajes.value.texto;
     this.respuestas[this.contador].user.estado = this.formularioMensajes.value.estado;
     this.respuestas[this.contador].user.fecha = new Date();
+    this.formularioMensajes.value.fechauser = new Date();
+    this.formularioMensajes.value.userid = this.userID;
     this.scrollAlUltimoMensaje();
     this.contador ++;
     //this.arrMensajesUsuario.push(this.formularioMensajes.value);
 
     try{
-      const response = await this.sendMsgServ.sendMsg(this.formularioMensajes.value,this.userID);
-      console.log(response);
+      
+      const response = await this.sendMsgServ.sendMsg(this.formularioMensajes.value);
       this.respuestas.push(response);
+      // Actualizamos el localstorage ...
+      localStorage.setItem('BufferRespuestas',JSON.stringify(this.respuestas));
       this.audioOpt.playByteArray(response.boot.voz.data);
       this.scrollAlUltimoMensaje();
       } catch(error) {
@@ -111,7 +125,6 @@ export class ChatBoxComponent implements OnInit {
   
 
   grabar(){
-    console.log("Empieza la grabación");
     this.recording = true;
         let mediaConstraints = {
             video: false,
@@ -135,14 +148,12 @@ export class ChatBoxComponent implements OnInit {
   }
 
   pararGrabar(){
-    console.log("Se detiene la grabación");
     this.recording = false;
     this.record.stop(this.processRecording.bind(this));
     
   }
 
   async processRecording(blob) {
-    console.log(this.record);
     const formData = new FormData();
     formData.append('pregunta',blob,'audio.wav');
     formData.append('id',this.userID);
@@ -155,6 +166,7 @@ export class ChatBoxComponent implements OnInit {
     this.contador ++;
     // Enviamos los datos al char de los que dice el bot.
     this.respuestas.push(audioResponse);
+    localStorage.setItem('BufferRespuestas',JSON.stringify(this.respuestas));
     this.audioOpt.playByteArray(audioResponse.boot.voz.data);
     this.scrollAlUltimoMensaje();
     }catch(err){
