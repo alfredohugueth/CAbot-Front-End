@@ -143,3 +143,14 @@ text-shadow: 0 1px 1px rgba(255, 255, 255, 0.59);
 .divider-custom.divider-light .divider-custom-icon {
   color: #fff !important;
 }
+
+
+.separacion{
+  padding: 10% 10% 10% 10%;
+  color: #3f51b5;
+  background-color: rgb(244 245 247);;
+}
+.margenFoto{
+  margin-top: 10%;
+  margin-bottom: 10%;
+}

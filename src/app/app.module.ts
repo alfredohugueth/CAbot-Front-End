@@ -24,10 +24,12 @@ import { FooterComponent } from './components/footer/footer.component';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { PreguntasComponent } from './components/preguntas/preguntas.component';
 import { ChatBoxComponent } from './components/chat-box/chat-box.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ScrollingModule } from '@angular/cdk/scrolling';
 import { ChartsComponent } from './components/charts/charts.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { MatProgressBarModule } from '@angular/material/progress-bar'
+import { InterceptorService } from './services/interceptor.service';
 
 registerLocaleData(localeEs);
 
@@ -58,11 +60,13 @@ registerLocaleData(localeEs);
     HttpClientModule,
     ReactiveFormsModule,
     ScrollingModule,
-    NgbModule
+    NgbModule,
+    MatProgressBarModule
   ],
-  providers: [{
-    provide: LOCALE_ID, useValue: 'es-ES'
-  }],
+  providers: [
+    {provide: LOCALE_ID, useValue: 'es-ES'},
+    {provide: HTTP_INTERCEPTORS, useClass:InterceptorService, multi:true}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,29 +1,39 @@
-
-
- <!-- Corregir los imagenes de cada src, solucionara el problema -->
-<div class='container-fluid'>
+<!-- Corregir los imagenes de cada src, solucionara el problema -->
 <ngb-carousel *ngIf="imagenes">
-    <ng-template ngbSlide>
-      <div class="picsum-img-wrapper img-flui">
-        <img class='imagenesDesarrolladores img-fluid' src="../../../assets/imagenes/Alfredo.jpg" alt="Slide Presentacion Alfredo Hugueth"> -->
-        
-      </div>
-      <div class="carousel-caption">
+  <ng-template ngbSlide>
+    <div class="container">
+
+      <img class='imagenesSlider' [src]="imagenes[0]" alt="Random first slide">
+
+      <div class="carousel-caption contenedorTexto">
         <h3>Alfredo Hugueth Polo</h3>
-        <p>Ingeniero electrónico encargado de la programación 
-          de la pagina web</p>
-        <p class='h6'>Contacto: alfredohugueth99@gmail.com</p>
+        <p>Ingeniero electrónico encargado de la <b>programación
+          de la pagina web</b></p>
+        <p class='h6'>Contacto: <b>alfredohugueth99@gmail.com</b></p>
       </div>
-    </ng-template>
-    <ng-template ngbSlide>
-      <div class="picsum-img-wrapper img-flui">
-        <img class='imagenesDesarrolladores img-fluid' src="../../../assets/imagenes/Luis.jpeg" alt="Slide Presentacion Luis Gomez">
-      </div>
-      <div class="carousel-caption">
+    </div>
+  </ng-template>
+  <ng-template ngbSlide>
+    <div class="container">
+
+      <img class='imagenesSlider' [src]="imagenes[1]" alt="Random second slide">
+      <div class="carousel-caption contenedorTexto">
         <h3>Luis Gómez Castro</h3>
-        <p>ingeniero electrónico encargado del entrenamiento de la IA utilizando DialogFlow</p>
-        <p class='h6'>Contacto: egluis@uninorte.edu.co</p>
+        <p>ingeniero electrónico encargado del <b>entrenamiento de la IA utilizando DialogFlow</b></p>
+        <p class='h6'>Contacto: <b>egluis@uninorte.edu.co</b></p>
       </div>
-    </ng-template>
+    </div>
+  </ng-template>
+  <ng-template ngbSlide>
+    <div class="container">
+
+      <img class='imagenesSlider' [src]="imagenes[2]" alt="Random first slide">
+
+      <div class="carousel-caption contenedorTexto">
+        <h3>Christian Quintero Monroy</h3>
+        <p>Ingeniero electrónico <b>acesor del proyecto</b></p>
+        <p class='h6'>Contacto: <b>christianq@uninorte.edu.co</b></p>
+      </div>
+    </div>
+  </ng-template>
   </ngb-carousel>
-</div>

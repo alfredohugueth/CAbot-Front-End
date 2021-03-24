@@ -6,6 +6,7 @@ import * as RecordRTC from 'recordrtc';
 import { DomSanitizer } from '@angular/platform-browser';
 import { state, style, transition, trigger, animate } from '@angular/animations';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
+import { LoaderService } from '../../services/loader.service';
 
 
 @Component({
@@ -35,7 +36,10 @@ export class ChatBoxComponent implements OnInit {
   scrollContainer: any;
   scroll: any;
 
-  constructor(private sendMsgServ: SendMsgsService, private audioOpt: AudioOptionsService, private domSanitizer: DomSanitizer) {
+  constructor(private sendMsgServ: SendMsgsService, 
+    private audioOpt: AudioOptionsService, 
+    private domSanitizer: DomSanitizer,
+    public servicioCarga:LoaderService ) {
     
     
     this.arrMensajesBot = [];
@@ -79,7 +83,10 @@ export class ChatBoxComponent implements OnInit {
       console.log('Entramos al else, se hace el codicional de llamar a las respuestas almacenadas en el local storage');
       this.respuestas = JSON.parse(localStorage.getItem('BufferRespuestas'));
       this.scrollAlUltimoMensaje();
-      //Ahora realizamos condicionales para guardar cada nueva pregunta en el local storage
+      //Actualizamos el valor del contador
+      this.contador=this.respuestas.length-1;
+      console.log(this.contador);
+      
     }
     console.log(this.userID);
     // Recibo el mensaje predeterminado de mis datos.

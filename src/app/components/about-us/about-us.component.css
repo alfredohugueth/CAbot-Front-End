@@ -1,4 +1,15 @@
-
+.imagenesSlider{
+  height: inherit;
+  width: 80%;
+  max-height: 800px;
+  margin-left: 10%;
+}
+.container{
+  background-color: #6c757dbd;
+}
+.contenedorTexto{
+  background-color: rgb(0 0 0 / 20%);
+}
 @media (min-width:768px){
     .limites{
       max-width: 90%;
@@ -8,12 +19,23 @@
         padding-top: 30%;
        
     }
+    
   }
 
-.imagenesSlider{
-  height: auto;
-  width: 100%;
+@media (min-height: 531px){
+  .imagenesSlider{
+    height: 100vh;
+    width: 80%;
+    max-height: 800px;
+    margin-left: 10%;
+  }
+
+  .espaciosBlancos{
+    height: 100%;
+  }
 }
+
+
 
 .imagenesDesarrolladores{
   /* background-image: url('../../../assets/imagenes/Alfredo.jpg'); */

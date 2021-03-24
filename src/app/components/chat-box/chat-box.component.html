@@ -9,13 +9,18 @@
             <h4> CAbot </h4>
             <h6> Disponible</h6>
         </div>
+        <div *ngIf="servicioCarga.Cargando | async" class='loader'>
+            <mat-progress-bar mode="indeterminate">
 
+            </mat-progress-bar>
+        </div>
 
     </div>
 
     <div class="chat-p shadow">
         <cdk-virtual-scroll-viewport itemSize="20vh" class="caja-mensajes">
             <div class="chats">
+                
                 <div class="msg" *ngFor="let respuesta of respuestas;">
                     <div class="boot-msg">
                         <!-- Poner ngFor aca para mensajes del boot -->

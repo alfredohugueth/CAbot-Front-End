@@ -77,13 +77,14 @@ img{
       padding: 0 0 30px 0;
       height: 70%;
       
+      
   }
 
   .caja-mensajes{
       border: 1px solid #ccc;
-      height: 50vh;
+      height: 80vh;
       padding-bottom: 30px;
-      
+      background-image: url('../../../assets/imagenes/FondoAlfredo.jpg');
   }
 
   .chats{
@@ -127,7 +128,7 @@ img{
 }
 
 .tiempo{
-    color: #777;
+    color:rgb(221 244 237);
     display: block;
     font-size: 0.6rem;
     margin: 8px 0 0;

@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 export class AboutUsComponent implements OnInit {
   imagenes:object;
   constructor() { 
-    this.imagenes = ['../../assets/imagenes/FondoAlfredo.jpg','../../assets/imagenes/FondoLuis.jpg'];
+    this.imagenes = ['../../assets/imagenes/Alfredo.jpg','../../assets/imagenes/Luis.jpeg','../../assets/imagenes/christian.jpeg'];
   }
 
   ngOnInit(): void {
