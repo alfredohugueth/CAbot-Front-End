@@ -47,4 +47,8 @@ export class SendMsgsService {
     let bodyRequest = {formAudio}
     return this.httpClient.post<any>(`${this.baseUrl}/botmsg/audio`,formAudio).toPromise();
   }
+
+  recivePreguntasFrecuentes(): Promise<any>{
+    return this.httpClient.get(`${this.baseUrl}/botmsg/preguntas-comunes`).toPromise();
+  }
 }

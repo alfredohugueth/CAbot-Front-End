@@ -1,18 +1,42 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Chart } from 'node_modules/chart.js';
-
+import { SendMsgsService } from '../../services/send-msgs.service';
+import { LoaderService } from '../../services/loader.service';
+import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 @Component({
   selector: 'app-charts',
   templateUrl: './charts.component.html',
   styleUrls: ['./charts.component.css']
 })
 export class ChartsComponent implements OnInit {
+  @ViewChild(CdkVirtualScrollViewport)
+  viewport: CdkVirtualScrollViewport;
+  mostrarRespuesta:boolean;
+  data:any
   // Obtenemos los datos de las preguntas mas buscadas en nuestra base de datos:
-  constructor() { }
+  constructor(public servicioCarga:LoaderService, private sendMsgServ:SendMsgsService) { 
+    this.mostrarRespuesta=false;
+    this.data = []
+    
+  }
 
-  ngOnInit(): void {
+  
+  
+  async ngOnInit(){
+
+    
 
     // LLamamos a los datos de la base de datos.
+    this.data = await this.sendMsgServ.recivePreguntasFrecuentes();
+    console.log(this.data);
+    this.data = await this.llenarVectorConFalsos(this.data);
+
+    console.log(this.data);
+    
+
+
+    // Creamos las graficas que observara el usuario ..
+
     var ctx = document.getElementById('Grafica');
     var myChart = new Chart(ctx, {
       type: 'line',
@@ -53,6 +77,36 @@ export class ChartsComponent implements OnInit {
         }
       }
     });
+  }
+
+  trackByIdx(index: number, obj: any): any {
+    return index;
+  }
+
+  llenarVectorConFalsos(data){
+    console.log(data.length);
+    for(let i=0;i<data.length;i++){
+      data[i].mostrar=false;
+      
+    }
+
+    
+
+    return data
+
+
+  }
+
+  
+
+
+  // Definimos la funcion on click al elemento...
+  desplegar(index){
+    
+    this.data[index].mostrar=!this.data[index].mostrar;
+    
+    
+    
   }
 
 }

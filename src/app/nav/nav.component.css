@@ -74,6 +74,7 @@
   color: #ffff;
   outline: none;
   cursor: pointer;
+  z-index: 99;
 }
 
 

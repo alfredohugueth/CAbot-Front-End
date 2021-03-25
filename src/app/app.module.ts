@@ -30,6 +30,7 @@ import { ChartsComponent } from './components/charts/charts.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatProgressBarModule } from '@angular/material/progress-bar'
 import { InterceptorService } from './services/interceptor.service';
+import { MatProgressSpinnerModule} from '@angular/material/progress-spinner'
 
 registerLocaleData(localeEs);
 
@@ -61,7 +62,8 @@ registerLocaleData(localeEs);
     ReactiveFormsModule,
     ScrollingModule,
     NgbModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatProgressSpinnerModule
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'es-ES'},
