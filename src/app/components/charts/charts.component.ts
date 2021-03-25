@@ -12,11 +12,16 @@ export class ChartsComponent implements OnInit {
   @ViewChild(CdkVirtualScrollViewport)
   viewport: CdkVirtualScrollViewport;
   mostrarRespuesta:boolean;
-  data:any
+  data:object;
+  dataGrafica:object;
+  nombresGraficas:object;
   // Obtenemos los datos de las preguntas mas buscadas en nuestra base de datos:
   constructor(public servicioCarga:LoaderService, private sendMsgServ:SendMsgsService) { 
     this.mostrarRespuesta=false;
-    this.data = []
+    this.data = [];
+    this.dataGrafica=[];
+    this.nombresGraficas=[];
+
     
   }
 
@@ -33,18 +38,22 @@ export class ChartsComponent implements OnInit {
 
     console.log(this.data);
     
+    this.dataGrafica = await this.llenarVectorDatos(this.data);
+    this.nombresGraficas = await this.llenarVectorLabels(this.data);
 
 
     // Creamos las graficas que observara el usuario ..
+    // Guadramos el vector que tomaremos como label y el otro que tomaremos como data....
+    // en _id.pregunta esta la pregunta que se pondra como label y en count esta el contador que usaremos como data...
 
     var ctx = document.getElementById('Grafica');
     var myChart = new Chart(ctx, {
-      type: 'line',
+      type: 'doughnut',
       data: {
-        labels: ["lunes", "Martes", "Miercoles", "Jueves", "Viernes"],
+        labels: this.nombresGraficas,
         datasets: [{
           label: '# De veces preguntadas',
-          data: [12, 19, 3, 5, 2, 3],
+          data: this.dataGrafica,
           backgroundColor: [
             'rgba(255, 99, 132, 0.2)',
             'rgba(54, 162, 235, 0.2)',
@@ -70,7 +79,7 @@ export class ChartsComponent implements OnInit {
             label:"Fecha",
             ticks: {
               beginAtZero: true,
-              display:true
+              
             
             }
           }]
@@ -84,6 +93,7 @@ export class ChartsComponent implements OnInit {
   }
 
   llenarVectorConFalsos(data){
+    
     console.log(data.length);
     for(let i=0;i<data.length;i++){
       data[i].mostrar=false;
@@ -107,6 +117,46 @@ export class ChartsComponent implements OnInit {
     
     
     
+  }
+
+  llenarVectorDatos(data){
+    let contador=0;
+    let datag=[];
+    let i=0;
+    for(let dat of data){
+      if(i>=5){
+        contador=contador+dat.count;
+        if(i==data.length-1){
+          datag[5]=contador;
+        }
+      }else{
+        datag[i]=dat.count;
+      }
+      i++
+    }
+    console.log(datag);
+    return datag
+
+
+  }
+
+  llenarVectorLabels(data){
+    let datag=[];
+    let i=0;
+    for(let dat of data){
+      if(i>=5){
+        console.log(i==data.length);
+        if(i==data.length-1){
+          console.log('entramos en condicional de labels');
+          datag[5]='Otras preguntas';
+        }
+      }else{
+      datag[i]=dat._id.Pregunta;
+      }
+      i++
+    }
+    
+    return datag
   }
 
 }

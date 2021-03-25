@@ -3,50 +3,53 @@
         <mat-spinner style="top:50%; left:50%"></mat-spinner>
 
     </div>
-    <!-- Area Chart -->
-    <div class="col-xl-8 col-lg-7">
+    
 
-        <div class="card shadow mb-4">
-            <!-- Card Header - Dropdown -->
-            <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                <h6 class="m-0 font-weight-bold text-primary">Preguntas Realizadas</h6>
-            </div>
-            <!-- Card Body -->
-            <!-- Colocamos los elementos que tendran las preguntas mas comunes realizadas -->
-            <!-- <div class="container-flex FAQS">
-                <p class=''> Aca iria la primera pregunta </p>
-                
-            </div> -->
-            <cdk-virtual-scroll-viewport itemSize="10">
-                <div *cdkVirtualFor="let preguntas of data; let i = index; trackBy:trackByIdx" class="contenedor">
-                    <p class="pregunta">{{ preguntas._id.Pregunta }}</p>
-                    
-                    <button (click)="desplegar(i)" class='desplega'>
-                        <mat-icon>swap_vert</mat-icon>
-                    </button>
+</div>
 
 
-                    <div *ngIf="preguntas.mostrar" class="respuesta text-justify margen">
-                        <p>
-                            {{ preguntas._id.Respuesta }}
+<!-- Area Chart -->
+<div class="container-flex">
+
+    <div class="card shadow ">
+        <!-- Card Header - Dropdown -->
+        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+            <h6 class="m-0 font-weight-bold text-primary">Preguntas Realizadas</h6>
+        </div>
+        <!-- Card Body -->
+        <!-- Colocamos los elementos que tendran las preguntas mas comunes realizadas -->
+        <!-- <div class="container-flex FAQS">
+            <p class=''> Aca iria la primera pregunta </p>
+            
+        </div> -->
+        <cdk-virtual-scroll-viewport itemSize="10">
+            <div *cdkVirtualFor="let preguntas of data; let i = index; trackBy:trackByIdx" class="contenedor">
+                <p class="pregunta">{{ preguntas._id.Pregunta }}</p>
+
+                <button (click)="desplegar(i)" class='desplega'>
+                    <mat-icon>swap_vert</mat-icon>
+                </button>
 
 
-                        </p>
+                <div *ngIf="preguntas.mostrar" class="respuesta text-justify margen">
+                    <p>
+                        {{ preguntas._id.Respuesta }}
 
-                    </div>
+
+                    </p>
 
                 </div>
-            </cdk-virtual-scroll-viewport>
-        </div>
 
-        <!-- Pie Chart -->
+            </div>
+        </cdk-virtual-scroll-viewport>
+    </div>
 
+    <!-- Pie Chart -->
+    <div class="container">
         <div class="chart-area">
             <canvas id="Grafica"></canvas>
         </div>
     </div>
-
 </div>
 
 <!-- Card Body -->
-
