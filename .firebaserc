@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "cabotwebpage": {
+      "hosting": {
+        "CAbot-front-end": [
+          "cabotwebpage"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "cabotwebpage"
+  }
+}

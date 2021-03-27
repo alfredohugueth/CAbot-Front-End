@@ -28,7 +28,7 @@ export class ChartsComponent implements OnInit {
   
   
   async ngOnInit(){
-
+    console.log(this.sendMsgServ.baseUrl);
     
 
     // LLamamos a los datos de la base de datos.

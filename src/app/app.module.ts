@@ -30,7 +30,9 @@ import { ChartsComponent } from './components/charts/charts.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatProgressBarModule } from '@angular/material/progress-bar'
 import { InterceptorService } from './services/interceptor.service';
-import { MatProgressSpinnerModule} from '@angular/material/progress-spinner'
+import { MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from '../environments/environment';
 
 registerLocaleData(localeEs);
 
