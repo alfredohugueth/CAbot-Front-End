@@ -84,7 +84,7 @@ img{
       border: 1px solid #ccc;
       height: 80vh;
       padding-bottom: 30px;
-      background-image: url('../../../assets/imagenes/FondoAlfredo.jpg');
+      /* background-image: url('../../../assets/imagenes/FondoAlfredo.jpg'); */
   }
 
   .chats{
@@ -111,6 +111,9 @@ img{
      vertical-align: top;
      width: 80%;
 
+  }
+  .imagen_respuesta{
+      border-radius: 0%;
   }
 
   .boot-text-inbox{
@@ -163,5 +166,6 @@ img{
     margin-left: 45%;
 
 }
+
 
 

@@ -19,7 +19,7 @@
 
     <div class="chat-p shadow">
         <cdk-virtual-scroll-viewport itemSize="20vh" class="caja-mensajes">
-            <div class="chats">
+            <div class="chats" [ngStyle]="{'background-image':fondoImagen}">
                 
                 <div class="msg" *ngFor="let respuesta of respuestas;">
                     <div class="boot-msg">
@@ -30,8 +30,11 @@
 
                         <div class="boot-text " *ngIf="respuesta.boot.estado">
                             <div class="boot-text-inbox">
-                                <p class='shadow'> {{ respuesta.boot.texto }}</p>
+                                <p class='shadow'> {{ respuesta.boot.texto }}
+                                    <img class='imagen_respuesta' *ngIf="respuesta.boot.imagenExiste" [src]="imagen">
+                                </p>
                                 <span class="tiempo"> {{ respuesta.boot.fecha | date:'short' }} </span>
+                                
                             </div>
                         </div>
 

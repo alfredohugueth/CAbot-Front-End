@@ -10,9 +10,9 @@ export class SendMsgsService {
   userID: string;
 
   constructor(private httpClient: HttpClient) { 
-    this.baseUrl='https://cabot-back-end.herokuapp.com'
+    //this.baseUrl='https://cabot-back-end.herokuapp.com'
 
-    //this.baseUrl = 'http://localhost:3000'
+    this.baseUrl = 'http://localhost:3000'
   }
 
   recieveMsg(): Promise<any>{

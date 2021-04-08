@@ -7,6 +7,10 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { state, style, transition, trigger, animate } from '@angular/animations';
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { LoaderService } from '../../services/loader.service';
+import Localbase from 'localbase'
+
+
+let db = new Localbase('db');
 
 
 @Component({
@@ -35,13 +39,17 @@ export class ChatBoxComponent implements OnInit {
   prueba: any;
   scrollContainer: any;
   scroll: any;
+  imagenExiste: boolean;
+  imagen:string;
+  fondoImagen:string;
 
   constructor(private sendMsgServ: SendMsgsService,
     private audioOpt: AudioOptionsService,
     private domSanitizer: DomSanitizer,
     public servicioCarga: LoaderService) {
-
-
+    this.fondoImagen = '';
+    this.imagenExiste = false;
+    this.imagen = '';
     this.arrMensajesBot = [];
     this.arrMensajesUsuario = [];
     this.respuestas = [];
@@ -69,27 +77,34 @@ export class ChatBoxComponent implements OnInit {
   async ngOnInit(): Promise<void> {
     //Analizo si tengo datos guardados en mi local storage...
     let almacenaje = localStorage.getItem('BufferRespuestas');
-    if (almacenaje === undefined || almacenaje == null) {
-      //Significa que no tenemos ningun dato guardado en nuestra base de datos local...
-      console.log('Entramos a condicional para crear el item del localstorage...');
-      //Recibimos mensaje de la base de datos... 
-      var PrimerMensaje = await this.sendMsgServ.recieveMsg();
-      this.respuestas.push(PrimerMensaje);
-      console.log("Se realizo el push del primer mensaje de manera correcta, almacenamos respuesta en el local storage..");
-      localStorage.setItem('BufferRespuestas', JSON.stringify(this.respuestas));
-      console.log("Primer seteo de local storage exitoso");
-    } else {
-      // Buscamos el valor del local storage de las preguntas que se han realizado..
-      console.log('Entramos al else, se hace el codicional de llamar a las respuestas almacenadas en el local storage');
-      this.respuestas = JSON.parse(localStorage.getItem('BufferRespuestas'));
-      this.scrollAlUltimoMensaje();
+    db.collection('respuestas').get().then(async(respuestas) => {
+      console.log(respuestas);
+      //Verificamos si el array es vacio ...
+      // en caso tal, creamos la entrada:
+      if (respuestas.length === 0) {
+        console.log('Database local vacio');
+        //creamos la entrada en el localdatabase ...
+        console.log('Entramos a condicional para crear el item del indexDB...');
+        //Recibimos mensaje de la base de datos...
+        var PrimerMensaje = await this.sendMsgServ.recieveMsg();
+        this.respuestas.push(PrimerMensaje);
+        console.log("Se realizo el push del primer mensaje de manera correcta, almacenamos respuesta en el local storage..");
+        db.collection('respuestas').add({});
+        db.collection('respuestas').set(this.respuestas);
+        console.log("Primer seteo de local storage exitoso");
+      }else{
+        //Llamamos a la database para setear los valores obtenidos anteriormente
+        console.log('DB no vacio');
+        //Llamamos el array almacenado .
+        this.respuestas =respuestas;
+        this.scrollAlUltimoMensaje();
       //Actualizamos el valor del contador
-      this.contador = this.respuestas.length - 1;
-      console.log(this.contador);
+        this.contador = this.respuestas.length - 1;
 
-    }
-    console.log(this.userID);
-    // Recibo el mensaje predeterminado de mis datos.
+      }
+
+    })
+
 
   }
   ngAfterViewChecked() {
@@ -97,10 +112,10 @@ export class ChatBoxComponent implements OnInit {
   }
 
   async enviarMensaje() {
-    //Verificamos que el campo no este vacio de texto no este vacio ... 
+    //Verificamos que el campo no este vacio de texto no este vacio ...
     if (this.formularioMensajes.value.texto.trim() === '') {
       //significa que estoy enviando un campo de texto sin ningun parametro.
-      
+
       alert('Ingresa tu pregunta por favor');
 
     } else {
@@ -117,11 +132,21 @@ export class ChatBoxComponent implements OnInit {
       try {
 
         const response = await this.sendMsgServ.sendMsg(this.formularioMensajes.value);
+        //Verificamos que la respuesta venga o no con imagen...
+        if(response.boot.imagen){
+          this.imagenExiste = true;
+          this.imagen = response.boot.imagen;
+          this.fondoImagen = response.boot.imagen;
+          response.boot.imagenExiste = this.imagenExiste;
+        }
         this.respuestas.push(response);
-        // Actualizamos el localstorage ...
-        localStorage.setItem('BufferRespuestas', JSON.stringify(this.respuestas));
+        
+
+        // localStorage.setItem('BufferRespuestas', JSON.stringify(this.respuestas));
         this.audioOpt.playByteArray(response.boot.voz.data);
         this.scrollAlUltimoMensaje();
+        // Actualizamos El valor del database ...
+        db.collection('respuestas').set(this.respuestas);
       } catch (error) {
         console.log(error);
       }
@@ -181,9 +206,10 @@ export class ChatBoxComponent implements OnInit {
       this.contador++;
       // Enviamos los datos al char de los que dice el bot.
       this.respuestas.push(audioResponse);
-      localStorage.setItem('BufferRespuestas', JSON.stringify(this.respuestas));
+      //localStorage.setItem('BufferRespuestas', JSON.stringify(this.respuestas));
       this.audioOpt.playByteArray(audioResponse.boot.voz.data);
       this.scrollAlUltimoMensaje();
+      //seteamos el nuevo valor 
     } catch (err) {
       console.log(err);
     }

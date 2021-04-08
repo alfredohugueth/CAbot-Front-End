@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { LoaderService } from '../services/loader.service';
 
+
 @Component({
   selector: 'nav',
   templateUrl: './nav.component.html',
