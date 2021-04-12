@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AboutUsComponent } from './components/about-us/about-us.component';
 import { ChatBoxComponent } from './components/chat-box/chat-box.component';
 import { PreguntasComponent } from './components/preguntas/preguntas.component';
-import { HomeComponent } from './home/home.component';
+import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
   {path:'',pathMatch:'full',redirectTo:'home'},
