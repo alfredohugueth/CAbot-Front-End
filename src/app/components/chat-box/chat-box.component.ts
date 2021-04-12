@@ -42,6 +42,7 @@ export class ChatBoxComponent implements OnInit {
   imagenExiste: boolean;
   imagen:string;
   fondoImagen:string;
+  mostrarBotonesMasPreguntas:boolean;
 
   constructor(private sendMsgServ: SendMsgsService,
     private audioOpt: AudioOptionsService,
@@ -132,13 +133,15 @@ export class ChatBoxComponent implements OnInit {
       try {
 
         const response = await this.sendMsgServ.sendMsg(this.formularioMensajes.value);
-        //Verificamos que la respuesta venga o no con imagen...
-        if(response.boot.imagen){
-          this.imagenExiste = true;
-          this.imagen = response.boot.imagen;
-          this.fondoImagen = response.boot.imagen;
-          response.boot.imagenExiste = this.imagenExiste;
+        //Verifico si la respuesta viene con botón de confirmación...
+        console.log('A punto de entrar a condicional');
+        if(response.boot.MasPreguntas == true){
+          console.log('Respuesta con boton');
+          //Deshabilitamos envió de pregunta de cualquier tipo hasta que se precione el boton si o no 
+          this.formularioMensajes 
         }
+
+        
         this.respuestas.push(response);
         
 
@@ -240,5 +243,31 @@ export class ChatBoxComponent implements OnInit {
     this.error = 'Can not play audio in your browser';
   }
 
+  QuieroPreguntar(){
+    console.log('Quiero preguntar mas');
+  }
+  NoQuieroPreguntar(){
+    console.log('No quiero preguntar mas');
+  }
+  Buena(){
+    console.log('Experiencia Buena');
+  }
+  Regular(){
+    console.log('Experiencia Regular');
+  }
+  Mala(){
+    console.log('Experiencia Mala');
+  }
+  Revision(){
+    console.log('Quiero revisar');
+  }
+  CalificarSi(){
+    console.log('Quiero Calificar');
+  }
+  CalificarNo(){
+    console.log('No Quiero calificar')
+  }
+
 
 }
+

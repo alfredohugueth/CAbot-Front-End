@@ -1,171 +1,176 @@
-.container{
-    width: 100%;
-    margin-top: 2%;
-    font-family: sans-serif;
-    letter-spacing: 0.5px;
+.container {
+  width: 100%;
+  margin-top: 2%;
+  font-family: sans-serif;
+  letter-spacing: 0.5px;
+}
+.contenedor {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
 }
 
-img{
-    max-width: 100%;
-    border-radius: 50%;
+img {
+  max-width: 100%;
+  border-radius: 50%;
 }
 
-.headerM{
-   border: 1px solid #ccc;
-   width: 100%;
-   height: 10%;
-   border-bottom: none;
-   display: inline-block;
-   background-color:rgb(40 55 71);
-
+.headerM {
+  border: 1px solid #ccc;
+  width: 100%;
+  height: 10%;
+  border-bottom: none;
+  display: inline-block;
+  background-color: rgb(40 55 71);
 }
 
-.headerM-img{
-    border-radius: 50%;
-    width: 10%;
-    margin-left: 2%;
-    margin-top: 2%;
-    margin-bottom: 2%;
-    float: left;
+.headerM-img {
+  border-radius: 50%;
+  width: 10%;
+  margin-left: 2%;
+  margin-top: 2%;
+  margin-bottom: 2%;
+  float: left;
 }
 
-.activo{
-    width: 30%;
-    float: left;
-    margin-top: 1%;    
+.activo {
+  width: 30%;
+  float: left;
+  margin-top: 1%;
 }
 
-.activo h4{
-    font-size: 1.5rem;
-    margin-top: 3%;
-    margin-left: 3%;
-    color: #fff;
-
+.activo h4 {
+  font-size: 1.5rem;
+  margin-top: 3%;
+  margin-left: 3%;
+  color: #fff;
 }
 
-.activo h6{
-    font-size: 1.25rem;
-    margin-left: 3%;
-    line-height: 0.1%;
-    color: #fff;
-
+.activo h6 {
+  font-size: 1.25rem;
+  margin-left: 3%;
+  line-height: 0.1%;
+  color: #fff;
 }
-@media (max-width: 576px) {
-    .headerM-img{
+
+.chat-P {
+  padding: 0 0 30px 0;
+  height: 70%;
+}
+
+.caja-mensajes {
+  border: 1px solid #ccc;
+  height: 80vh;
+  padding-bottom: 30px;
+   background-image: url('https://rivasrobotics.com/wp-content/uploads/2017/01/brazo-robotico.png'); 
+}
+
+.chats {
+  padding: 30px 15px 0 25px;
+}
+
+.msg {
+  outline: none;
+}
+
+.boot-img {
+  display: inline-block;
+  width: 10%;
+  float: left;
+}
+
+.boot-text {
+  display: inline-block;
+  padding: 0 0 0 10px;
+  vertical-align: top;
+  width: 80%;
+}
+.imagen_respuesta {
+  border-radius: 0%;
+}
+.botonesCentrados {
+  position: relative;
+  left: 33%;
+  margin-top: 10px;
+}
+
+.boot-text-inbox {
+  width: 57%;
+}
+
+.boot-text-inbox p {
+  background: #efefef none repeat scroll 0 0;
+  border-radius: 10px;
+  color: #646464;
+  font-size: 0.8rem;
+  margin: 0;
+  padding: 10% 10% 10% 10%;
+  width: 100%;
+}
+
+.tiempo {
+  color: rgb(221 244 237);
+  display: block;
+  font-size: 0.6rem;
+  margin: 8px 0 0;
+}
+
+.user-msg {
+  overflow: hidden;
+  margin: 1% 1%;
+}
+
+.user-img {
+  display: inline-block;
+  width: 8%;
+  float: right;
+}
+
+.user-text p {
+  background: #007bff none repeat scroll 0 0;
+  color: #fff;
+  border-radius: 10px;
+  font-size: 0.8rem;
+  margin: 0;
+  padding: 10% 10% 10% 10%;
+  width: 100%;
+  outline: none;
+}
+
+.user-text-inbox {
+  float: left;
+  width: 46%;
+  margin-left: 45%;
+}
+.contenedor_boton_califica{
+    margin-left: auto;
+    margin-right: auto;
+    background-color:rgb(222 154 192);
+}
+
+@media (max-width: 500px) {
+  .headerM-img {
     border-radius: 50%;
     width: 20%;
     margin-left: 2%;
     margin-top: 5%;
     float: left;
-
-    }
-
-    .activo h4 {
-      font-size: 1rem;
-      margin-left:5% ;
-      color: #fff;
-    }
-    .activo h6{
-        font-size: 0.8rem;
-        margin-left: 5%;
-        line-height: 1%;
-        color: #fff;
-    }
   }
 
-  .chat-P{
-      padding: 0 0 30px 0;
-      height: 70%;
-      
-      
-  }
-
-  .caja-mensajes{
-      border: 1px solid #ccc;
-      height: 80vh;
-      padding-bottom: 30px;
-      /* background-image: url('../../../assets/imagenes/FondoAlfredo.jpg'); */
-  }
-
-  .chats{
-      padding: 30px 15px 0 25px;
-      
-      
-  }
-
-  .msg{
-      
-      outline: none;
-      
-  }
-
-  .boot-img{
-      display: inline-block;
-      width: 10%;
-      float: left;
-  }
-
-  .boot-text{
-     display: inline-block;
-     padding: 0 0 0 10px;
-     vertical-align: top;
-     width: 80%;
-
-  }
-  .imagen_respuesta{
-      border-radius: 0%;
-  }
-
-  .boot-text-inbox{
-      width: 57%;
-  }
-
-  .boot-text-inbox p{
-    background: #efefef none repeat scroll 0 0;
-    border-radius: 10px;
-    color: #646464;
-    font-size: 0.8rem;
-    margin: 0;
-    padding: 10% 10% 10% 10%;
-    width: 100%;
-}
-
-.tiempo{
-    color:rgb(221 244 237);
-    display: block;
-    font-size: 0.6rem;
-    margin: 8px 0 0;
-}
-
-.user-msg{
-    overflow: hidden;
-    margin: 1% 1%; 
-}
-
-.user-img{
-    display: inline-block;
-    width: 8%;
-    float: right;
-    
- }
-
-.user-text p{
-    background: #007bff none repeat scroll 0 0;
+  .activo h4 {
+    font-size: 1rem;
+    margin-left: 5%;
     color: #fff;
-    border-radius: 10px;
+  }
+  .activo h6 {
     font-size: 0.8rem;
-    margin: 0;
-    padding: 10% 10% 10% 10%;
-    width: 100%;
-    outline: none
+    margin-left: 5%;
+    line-height: 1%;
+    color: #fff;
+  }
+  .botonesCentrados {
+    margin-top: 10px;
+    width: 50%;
+    left: 2%;
+  }
 }
-
-.user-text-inbox{
-    float: left;
-    width: 46%;
-    margin-left: 45%;
-
-}
-
-
-
