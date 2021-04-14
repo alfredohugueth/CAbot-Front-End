@@ -1,119 +1,121 @@
 <div class="container shadow">
     <div class="headerM">
-
         <div class="headerM-img">
-            <img src="../../../assets/imagenes/TOCLICK.png">
+            <img src="../../../assets/imagenes/TOCLICK.png" />
         </div>
 
         <div class="activo">
-            <h4> CAbot </h4>
-            <h6> Disponible</h6>
+            <h4>CAbot</h4>
+            <h6>Disponible</h6>
         </div>
-        <div *ngIf="servicioCarga.Cargando | async" class='loader'>
-            <mat-progress-bar mode="indeterminate">
-
-            </mat-progress-bar>
+        <div *ngIf="servicioCarga.Cargando | async" class="loader">
+            <mat-progress-bar mode="indeterminate"> </mat-progress-bar>
         </div>
-
     </div>
 
     <div class="chat-p shadow">
         <cdk-virtual-scroll-viewport itemSize="20vh" class="caja-mensajes">
-            <div class="chats" [ngStyle]="{'background-image':fondoImagen}">
-                
-                <div class="msg" *ngFor="let respuesta of respuestas;">
+            <div class="chats" [ngStyle]="{ 'background-image': fondoImagen }">
+                <div class="msg" *ngFor="let respuesta of respuestas">
                     <div class="boot-msg">
                         <!-- Poner ngFor aca para mensajes del boot -->
                         <div class="boot-img">
-                            <img class='shadow' src="../../../assets/imagenes/TOCLICK.png">
+                            <img class="shadow" src="../../../assets/imagenes/TOCLICK.png" />
                         </div>
 
-                        <div class="boot-text " *ngIf="respuesta.boot.estado">
+                        <div class="boot-text" *ngIf="respuesta.boot.estado">
                             <div class="boot-text-inbox">
-                                <p class='shadow'> {{ respuesta.boot.texto }}
-                                    <img class='imagen_respuesta' *ngIf="respuesta.boot.mostrarImagen" [src]="respuesta.boot.imagen">
-                                    <br>
-                                    <a *ngIf='respuesta.boot.MasPreguntas' class='text-center text-decoration-none'> ¿Te puedo ayudar en algo más?</a>
-                                    <br *ngIf='respuesta.boot.MasPreguntas'>
-                                    <button required *ngIf='respuesta.boot.MasPreguntas' (click)='QuieroPreguntar()' class='btn btn-success btn-group-sm d-inline botonesCentrados'>Sí</button>
-                                    <button required *ngIf='respuesta.boot.MasPreguntas' (click)='NoQuieroPreguntar()' class='btn btn-danger btn-group-sm d-inline botonesCentrados'>No</button>
+                                <p class="shadow">
+                                    {{ respuesta.boot.texto }}
+                                    <img class="imagen_respuesta" *ngIf="respuesta.boot.mostrarImagen"
+                                        [src]="respuesta.boot.imagen" />
+                                    <br />
+                                    <a *ngIf="respuesta.boot.MasPreguntas" class="text-center text-decoration-none">
+                                        ¿Te puedo ayudar en algo más?</a>
+                                    <br *ngIf="respuesta.boot.MasPreguntas" />
+                                    <button required *ngIf="respuesta.boot.MasPreguntas" (click)="QuieroPreguntar()"
+                                        class="btn btn-success btn-group-sm d-inline botonesCentrados">
+                                        Sí
+                                    </button>
+                                    <button required *ngIf="respuesta.boot.MasPreguntas" (click)="NoQuieroPreguntar()"
+                                        class="btn btn-danger btn-group-sm d-inline botonesCentrados">
+                                        No
+                                    </button>
                                     <!-- Maquetar botones correctamente en el futuro -->
-                                    <button *ngIf='false' (click)='Buena()' class="btn btn-outline-success">Buena</button>
-                                    <button *ngIf='false' (click)='Regular()' class="btn btn-outline-warning">Regular</button>
-                                    <button *ngIf='false' (click)='Mala()' class="btn btn-outline-danger">Mala</button>
+                                    <button *ngIf="false" (click)="Buena()" class="btn btn-outline-success">
+                                        Buena
+                                    </button>
+                                    <button *ngIf="false" (click)="Regular()" class="btn btn-outline-warning">
+                                        Regular
+                                    </button>
+                                    <button *ngIf="false" (click)="Mala()" class="btn btn-outline-danger">
+                                        Mala
+                                    </button>
                                 </p>
-                                <span class="tiempo"> {{ respuesta.boot.fecha | date:'short' }} </span>
-                                
+                                <span class="tiempo">
+                                    {{ respuesta.boot.fecha | date: "short" }}
+                                </span>
                             </div>
                         </div>
-                        
-                            <div *ngIf='false'>
-                                <h1 class='d-flex justify-content-center'>¿Desea calificar la experiencia de Usuario?</h1>
-                                
-                                <div class='d-flex justify-content-center'>
-                                    <button (click)='CalificarSi()' class='btn btn-outline-success'>Sí</button>
-                                    <button (click)='CalificarNo()' class='btn btn-outline-danger'>No</button>
-
-                                </div>
-                            </div>
-
-                        
-
                     </div>
 
-                    <div class="user-msg " *ngIf="respuesta.user.estado">
+                    <div class="container-fluid p-3 my-3 bg-dark text-white d-flex justify-content-center" *ngIf="respuesta.boot.quieroCalificar">
+                        <div class="boot-text">
+                            <div class="boot-text-inbox">
+                                <h1 class="d-flex justify-content-center">
+                                    ¿Desea calificar la experiencia de Usuario?
+                                </h1>
+
+                                <div class="d-flex justify-content-center">
+                                    <button (click)="CalificarSi()" class="btn btn-outline-success">
+                                        Sí
+                                    </button>
+                                    <button (click)="CalificarNo()" class="btn btn-outline-danger">
+                                        No
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="user-msg" *ngIf="respuesta.user.estado">
                         <!-- Poner ngFor aca para mensajes del usuario -->
 
-                        <div class="user-img ">
-                            <img class='shadow' src="../../../assets/imagenes/user.png">
+                        <div class="user-img">
+                            <img class="shadow" src="../../../assets/imagenes/user.png" />
                         </div>
                         <div class="user-text">
                             <div class="user-text-inbox">
-                                <p class='shadow'> {{ respuesta.user.texto }}</p>
-                                <span class="tiempo"> {{ respuesta.user.fecha | date:'short' }} </span>
+                                <p class="shadow">{{ respuesta.user.texto }}</p>
+                                <span class="tiempo">
+                                    {{ respuesta.user.fecha | date: "short" }}
+                                </span>
                             </div>
                         </div>
-
-
-
-
-
-
                     </div>
-
-
-
-
-
-
-
-
-
                 </div>
-
-
             </div>
-
-
         </cdk-virtual-scroll-viewport>
-
     </div>
 
-    <div class="chat-botton">
+    <div class="chat-botton" *ngIf="mostrarInputs">
         <form class="input-group" [formGroup]="formularioMensajes" (ngSubmit)="enviarMensaje()">
-            <input required type="text" class="form-control" placeholder="Escriba su pregunta..." formControlName="texto">
+            <input required type="text" class="form-control" placeholder="Escriba su pregunta..."
+                formControlName="texto" />
             <div class="input-group-append">
                 <form (submit)="pararGrabar()">
                     <button class="btn btn-success" (click)="grabar()" *ngIf="!recording">
                         <mat-icon> record_voice_over </mat-icon>
                     </button>
-                    <button id='boton_envio'type="submit" class="btn btn-danger" (click)="pararGrabar()" *ngIf="recording">
+                    <button id="boton_envio" type="submit" class="btn btn-danger" (click)="pararGrabar()"
+                        *ngIf="recording">
                         <mat-icon> record_voice_over </mat-icon>
                     </button>
                 </form>
-                <button id='boton_envio' class="btn btn-primary" type="submit" [disabled]="formularioMensajes.invalid">
+                <button id="boton_envio" class="btn btn-primary" type="submit" [disabled]="formularioMensajes.invalid">
                     <mat-icon>send</mat-icon>
                 </button>
             </div>
         </form>
     </div>
+</div>

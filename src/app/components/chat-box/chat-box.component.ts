@@ -43,6 +43,8 @@ export class ChatBoxComponent implements OnInit {
   imagen:string;
   fondoImagen:string;
   mostrarBotonesMasPreguntas:boolean;
+  mostrarInputs:Boolean;
+  quieroCalificar:Boolean[];
 
   constructor(private sendMsgServ: SendMsgsService,
     private audioOpt: AudioOptionsService,
@@ -57,6 +59,9 @@ export class ChatBoxComponent implements OnInit {
     this.contador = 0;
     this.audio = {};
     this.prueba = {};
+    this.mostrarInputs=true;
+    this.quieroCalificar = [];
+
     this.formularioMensajes = new FormGroup({
       estado: new FormControl(true),
       emisor: new FormControl('usuario'),
@@ -120,7 +125,7 @@ export class ChatBoxComponent implements OnInit {
       alert('Ingresa tu pregunta por favor');
 
     } else {
-
+      this.contador = this.respuestas.length-1;
       this.respuestas[this.contador].user.texto = this.formularioMensajes.value.texto;
       this.respuestas[this.contador].user.estado = this.formularioMensajes.value.estado;
       this.respuestas[this.contador].user.fecha = new Date();
@@ -143,6 +148,12 @@ export class ChatBoxComponent implements OnInit {
 
         
         this.respuestas.push(response);
+
+        /* Verifico si hay botones en el mensaje recibido*/
+
+        if(response.boot.MasPreguntas){
+          this.mostrarInputs = false;
+        }
         
 
         // localStorage.setItem('BufferRespuestas', JSON.stringify(this.respuestas));
@@ -243,11 +254,21 @@ export class ChatBoxComponent implements OnInit {
     this.error = 'Can not play audio in your browser';
   }
 
-  QuieroPreguntar(){
+  async QuieroPreguntar(){
+    this.contador = this.respuestas.length -1
+    /* Detenemos el audio que se este ejecutando en el momento*/ 
     console.log('Quiero preguntar mas');
+    /* Enviamos mensaje predeterminado a backend */
+    await this.enviarMensajeMasPreguntas();
+    this.mostrarInputs = true;
   }
   NoQuieroPreguntar(){
     console.log('No quiero preguntar mas');
+    this.contador = this.respuestas.length-1;
+    /* Muestro botón quieres calificar */
+    this.respuestas[this.contador].boot.quieroCalificar=true;
+
+
   }
   Buena(){
     console.log('Experiencia Buena');
@@ -266,6 +287,20 @@ export class ChatBoxComponent implements OnInit {
   }
   CalificarNo(){
     console.log('No Quiero calificar')
+  }
+
+  async enviarMensajeMasPreguntas(){
+    const response = await this.sendMsgServ.SendMoreQuestions();
+    console.log(response);
+    /* En este caso no mostramos la respuesta en la pagina de mensajes */
+    /* Solo mostramos respuesta del bot */
+    this.respuestas.push(response);
+    this.audioOpt.playByteArray(response.boot.voz.data);
+    this.scrollAlUltimoMensaje();
+    // Actualizamos El valor del database ...
+    db.collection('respuestas').set(this.respuestas);
+
+
   }
 
 

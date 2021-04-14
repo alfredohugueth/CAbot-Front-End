@@ -21,6 +21,7 @@ export class AudioOptionsService {
 }
   // Reproducir audio de respuesta
   playByteArray(byteArray) {
+    
     var arrayBuffer = new ArrayBuffer(byteArray.length);
     var bufferView = new Uint8Array(arrayBuffer);
     for (let i = 0; i < byteArray.length; i++) {

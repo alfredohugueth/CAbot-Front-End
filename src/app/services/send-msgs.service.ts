@@ -53,4 +53,12 @@ export class SendMsgsService {
   recivePreguntasFrecuentes(): Promise<any>{
     return this.httpClient.get(`${this.baseUrl}/botmsg/preguntas-comunes`).toPromise();
   }
+
+  SendMoreQuestions(): Promise<any>{
+    let bodyRequest = {
+      text : 'Otra pregunta',
+      userID: this.userID
+    }
+    return this.httpClient.post(`${this.baseUrl}/botmsg/more_questions`,bodyRequest).toPromise();
+  }
 }
