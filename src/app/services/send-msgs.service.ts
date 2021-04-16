@@ -61,4 +61,34 @@ export class SendMsgsService {
     }
     return this.httpClient.post(`${this.baseUrl}/botmsg/more_questions`,bodyRequest).toPromise();
   }
+
+
+  quieroCalificar():Promise<any>{
+    let bodyRequest = {
+      text:'el usuario quiere calificar',
+      userID:this.userID
+    }
+
+    return this.httpClient.post(`${this.baseUrl}/botmsg/gradebot`,bodyRequest).toPromise();
+  }
+
+  mandarCalificacion(calificacion:string):Promise<any>{
+    let bodyRequest ={
+      text: calificacion,
+      userID: this.userID
+    }
+
+    return this.httpClient.post(`${this.baseUrl}/botmsg/califica`,bodyRequest).toPromise();
+
+
+  }
+
+  noCalificar():Promise<any>{
+    let bodyRequest ={
+      text: 'El usuario no va a calificar nada',
+      userID: this.userID
+    }
+
+    return this.httpClient.post(`${this.baseUrl}/botmsg/nocalifica`,bodyRequest).toPromise();
+  }
 }

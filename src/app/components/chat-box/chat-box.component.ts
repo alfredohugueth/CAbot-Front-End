@@ -45,6 +45,8 @@ export class ChatBoxComponent implements OnInit {
   mostrarBotonesMasPreguntas:boolean;
   mostrarInputs:Boolean;
   quieroCalificar:Boolean[];
+  preguntaCalificar:Boolean;
+  respuestaCalificar:Boolean;
 
   constructor(private sendMsgServ: SendMsgsService,
     private audioOpt: AudioOptionsService,
@@ -61,6 +63,9 @@ export class ChatBoxComponent implements OnInit {
     this.prueba = {};
     this.mostrarInputs=true;
     this.quieroCalificar = [];
+    this.preguntaCalificar = false;
+    this.respuestaCalificar = false;
+    this.mostrarBotonesMasPreguntas=false;
 
     this.formularioMensajes = new FormGroup({
       estado: new FormControl(true),
@@ -136,15 +141,30 @@ export class ChatBoxComponent implements OnInit {
       //this.arrMensajesUsuario.push(this.formularioMensajes.value);
 
       try {
+        /* Almacenamos los datos ingresados por el usuario en el formulario */
 
-        const response = await this.sendMsgServ.sendMsg(this.formularioMensajes.value);
+        let body = {
+          estado: this.formularioMensajes.value.estado,
+          emisor: 'User',
+          texto: this.formularioMensajes.value.texto,
+          userid: this.userID,
+          fechauser: this.formularioMensajes.value.fechauser
+        }
+
+        this.formularioMensajes = new FormGroup({
+          estado: new FormControl(true),
+          emisor: new FormControl('usuario'),
+          texto: new FormControl(),
+          userid: new FormControl(this.userID)
+  
+        })
+
+
+
+        const response = await this.sendMsgServ.sendMsg(body);
         //Verifico si la respuesta viene con botón de confirmación...
         console.log('A punto de entrar a condicional');
-        if(response.boot.MasPreguntas == true){
-          console.log('Respuesta con boton');
-          //Deshabilitamos envió de pregunta de cualquier tipo hasta que se precione el boton si o no 
-          this.formularioMensajes 
-        }
+        
 
         
         this.respuestas.push(response);
@@ -152,6 +172,7 @@ export class ChatBoxComponent implements OnInit {
         /* Verifico si hay botones en el mensaje recibido*/
 
         if(response.boot.MasPreguntas){
+          this.mostrarBotonesMasPreguntas = true;
           this.mostrarInputs = false;
         }
         
@@ -165,13 +186,7 @@ export class ChatBoxComponent implements OnInit {
         console.log(error);
       }
 
-      this.formularioMensajes = new FormGroup({
-        estado: new FormControl(true),
-        emisor: new FormControl('usuario'),
-        texto: new FormControl(),
-        userid: new FormControl(this.userID)
-
-      })
+      
 
     }
   }
@@ -255,41 +270,82 @@ export class ChatBoxComponent implements OnInit {
   }
 
   async QuieroPreguntar(){
-    this.contador = this.respuestas.length -1
+    
+    
     /* Detenemos el audio que se este ejecutando en el momento*/ 
     console.log('Quiero preguntar mas');
     /* Enviamos mensaje predeterminado a backend */
     await this.enviarMensajeMasPreguntas();
     this.mostrarInputs = true;
+    
   }
   NoQuieroPreguntar(){
     console.log('No quiero preguntar mas');
     this.contador = this.respuestas.length-1;
     /* Muestro botón quieres calificar */
     this.respuestas[this.contador].boot.quieroCalificar=true;
+    this.preguntaCalificar = true;
+    this.respuestas[this.contador].boot.MasPreguntas = false;
+    this.scrollAlUltimoMensaje();
 
 
   }
-  Buena(){
-    console.log('Experiencia Buena');
-  }
-  Regular(){
-    console.log('Experiencia Regular');
-  }
-  Mala(){
-    console.log('Experiencia Mala');
+  async califica(calificacion:string){
+    this.respuestas[this.contador].boot.quieroCalificar = false;
+    const response = await this.sendMsgServ.mandarCalificacion(calificacion);
+    this.respuestas.push(response);
+    /* Reproducimos el audio */
+    this.contador = this.respuestas.length-1
+    this.audioOpt.playByteArray(response.boot.voz.data);
+    this.mostrarInputs = true;
   }
   Revision(){
     console.log('Quiero revisar');
   }
-  CalificarSi(){
+  async CalificarSi(){
     console.log('Quiero Calificar');
+    this.preguntaCalificar = false;
+    /* Realizamos acción para generar intent de quiero calificar */
+    await this.sendMsgServ.quieroCalificar();
+
+    this.respuestaCalificar = true;
+
+
+    /* Desplegamos botones para calificar */
+
+
+
+
   }
-  CalificarNo(){
-    console.log('No Quiero calificar')
+  async CalificarNo(){
+    console.log('No Quiero calificar');
+    this.contador = this.respuestas.length-1;
+    /*Escondemos el mensaje de calificar */
+    this.respuestas[this.contador].boot.quieroCalificar = false
+    /* No quiero calificar */
+    const response = await this.sendMsgServ.noCalificar();
+    /* Mostramos la respuesta */
+
+    this.respuestas.push(response);
+    this.contador = this.respuestas.length-1
+
+    /* Reproducimos audio */
+
+    this.audioOpt.playByteArray(response.boot.voz.data);
+
+    /* Hacemos scroll */
+
+    this.scrollAlUltimoMensaje();
+
+    /* habilitamos el input*/
+
+    this.mostrarInputs=true;
+    
   }
 
   async enviarMensajeMasPreguntas(){
+    this.contador = this.respuestas.length -1;
+    this.respuestas[this.contador].boot.MasPreguntas = false;
     const response = await this.sendMsgServ.SendMoreQuestions();
     console.log(response);
     /* En este caso no mostramos la respuesta en la pagina de mensajes */
@@ -300,7 +356,14 @@ export class ChatBoxComponent implements OnInit {
     // Actualizamos El valor del database ...
     db.collection('respuestas').set(this.respuestas);
 
+    
 
+
+  }
+
+
+  async limpiarChat(){
+    
   }
 
 
