@@ -6,7 +6,7 @@ import { LoaderService } from '../../services/loader.service';
 
 
 @Component({
-  selector: 'nav',
+  selector: 'nav-primero',
   templateUrl: './nav.component.html',
   styleUrls: ['./nav.component.css']
 })

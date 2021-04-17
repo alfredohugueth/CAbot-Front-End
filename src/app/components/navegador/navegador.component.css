@@ -1,0 +1,63 @@
+.cssNavbar{
+    background-color: rgb(40 55 71);
+    color: rgb(255 255 255);
+    font-weight: bold;
+    height: 100%;;
+}
+
+.logoPagina{
+    display: block;
+    font-size:40px;
+    position: relative;
+    top: 20px;
+}
+
+.titulo{
+    position: relative;
+    left: 60%;
+    top:-50px;
+}
+
+.rutasPantalla a{
+    color:white;
+    margin: 0 10px 10px 10px;
+    list-style-type: none;
+}
+
+
+
+.sinPuntos{
+    list-style-type: none;
+}
+
+.sinPuntos a{
+    color: white;
+    color:white;
+    margin: 10px 0 0 10px;
+    list-style-type: none;
+}
+
+.botonCelulares{
+    display: none;
+}
+
+
+@media (max-width:700px) {
+    .titulo{
+        left: 100%;
+        top:-50px;
+        font-size: 7vw;
+    }
+
+    .rutasPantalla{
+        display: none;
+    }
+
+    .botonCelulares{
+        display: inline;
+        position: relative;
+        top:-20px;
+    }
+
+    
+}

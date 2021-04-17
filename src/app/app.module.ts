@@ -33,6 +33,8 @@ import { InterceptorService } from './services/interceptor.service';
 import { MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
+import { NavegadorComponent } from './components/navegador/navegador.component';
+import { InstruccionesComponent } from './components/instrucciones/instrucciones.component';
 
 registerLocaleData(localeEs);
 
@@ -45,7 +47,9 @@ registerLocaleData(localeEs);
     AboutUsComponent,
     PreguntasComponent,
     ChatBoxComponent,
-    ChartsComponent
+    ChartsComponent,
+    NavegadorComponent,
+    InstruccionesComponent
   ],
   imports: [
     BrowserModule,

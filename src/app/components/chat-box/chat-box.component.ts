@@ -100,8 +100,8 @@ export class ChatBoxComponent implements OnInit {
         var PrimerMensaje = await this.sendMsgServ.recieveMsg();
         this.respuestas.push(PrimerMensaje);
         console.log("Se realizo el push del primer mensaje de manera correcta, almacenamos respuesta en el local storage..");
-        db.collection('respuestas').add({});
         db.collection('respuestas').set(this.respuestas);
+        // db.collection('respuestas').set(this.respuestas);
         console.log("Primer seteo de local storage exitoso");
       }else{
         //Llamamos a la database para setear los valores obtenidos anteriormente
