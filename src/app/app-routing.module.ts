@@ -5,6 +5,7 @@ import { ChatBoxComponent } from './components/chat-box/chat-box.component';
 import { PreguntasComponent } from './components/preguntas/preguntas.component';
 import { HomeComponent } from './components/home/home.component';
 import { NavegadorComponent } from './components/navegador/navegador.component';
+import { InstruccionesComponent } from './components/instrucciones/instrucciones.component';
 
 const routes: Routes = [
   {path:'',pathMatch:'full',redirectTo:'home'},
@@ -12,6 +13,7 @@ const routes: Routes = [
   {path:'about-us', component: AboutUsComponent},
   {path:'questions', component:PreguntasComponent},
   {path:'chat',component:ChatBoxComponent},
+  {path:'instructions',component:InstruccionesComponent},
   {path: '**', redirectTo:'home'}
 ];
 

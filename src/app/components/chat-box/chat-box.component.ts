@@ -8,6 +8,8 @@ import { state, style, transition, trigger, animate } from '@angular/animations'
 import { CdkVirtualScrollViewport } from '@angular/cdk/scrolling';
 import { LoaderService } from '../../services/loader.service';
 import Localbase from 'localbase'
+import { DOCUMENT } from '@angular/common'; 
+import { Inject }  from '@angular/core';
 
 
 let db = new Localbase('db');
@@ -21,6 +23,7 @@ let db = new Localbase('db');
 export class ChatBoxComponent implements OnInit {
   @ViewChild(CdkVirtualScrollViewport)
   viewport: CdkVirtualScrollViewport;
+  
   //Lets initiate Record OBJ
   private record;
   //Will use this flag for detect recording
@@ -47,11 +50,13 @@ export class ChatBoxComponent implements OnInit {
   quieroCalificar:Boolean[];
   preguntaCalificar:Boolean;
   respuestaCalificar:Boolean;
+  scrollInput:HTMLElement;
 
   constructor(private sendMsgServ: SendMsgsService,
     private audioOpt: AudioOptionsService,
     private domSanitizer: DomSanitizer,
-    public servicioCarga: LoaderService) {
+    public servicioCarga: LoaderService,
+    @Inject(DOCUMENT) document) {
     this.fondoImagen = '';
     this.imagenExiste = false;
     this.imagen = '';
@@ -87,6 +92,7 @@ export class ChatBoxComponent implements OnInit {
 
   async ngOnInit(): Promise<void> {
     //Analizo si tengo datos guardados en mi local storage...
+    
     let almacenaje = localStorage.getItem('BufferRespuestas');
     db.collection('respuestas').get().then(async(respuestas) => {
       console.log(respuestas);
@@ -192,7 +198,10 @@ export class ChatBoxComponent implements OnInit {
   }
 
 
-
+  scrollToTextInput(el:HTMLElement){
+    console.log(el);
+    el.scrollIntoView();
+  }
   grabar() {
     this.recording = true;
     let mediaConstraints = {
@@ -254,12 +263,7 @@ export class ChatBoxComponent implements OnInit {
         behavior: 'smooth',
       });
     }, 0);
-    setTimeout(() => {
-      this.viewport.scrollTo({
-        bottom: 0,
-        behavior: 'smooth'
-      });
-    }, 50);
+    
   }
 
 
@@ -277,6 +281,7 @@ export class ChatBoxComponent implements OnInit {
     /* Enviamos mensaje predeterminado a backend */
     await this.enviarMensajeMasPreguntas();
     this.mostrarInputs = true;
+    this.scrollToElement();
     
   }
   NoQuieroPreguntar(){
@@ -364,6 +369,16 @@ export class ChatBoxComponent implements OnInit {
 
   async limpiarChat(){
     
+  }
+
+  obtenerElemento($event){
+    console.log($event);
+    console.log(typeof($event))
+    this.scrollInput = $event;
+  }
+
+  scrollToElement(){
+    this.scrollInput.scrollIntoView();
   }
 
 

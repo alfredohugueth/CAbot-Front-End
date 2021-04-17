@@ -10,6 +10,10 @@
   margin-right: auto;
 }
 
+.contenedorChat{
+  height: 80vh;
+}
+
 img {
   max-width: 100%;
   border-radius: 50%;
@@ -60,9 +64,11 @@ img {
 
 .caja-mensajes {
   border: 1px solid #ccc;
-  height: 80vh;
+  height: 70vh;
   padding-bottom: 30px;
-   background-image: url('https://rivasrobotics.com/wp-content/uploads/2017/01/brazo-robotico.png'); 
+  background-image: url('https://rivasrobotics.com/wp-content/uploads/2017/01/brazo-robotico.png');
+  background-repeat: no-repeat;
+  background-size: 100%; 
 }
 
 .chats {

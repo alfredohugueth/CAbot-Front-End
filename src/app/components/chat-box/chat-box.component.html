@@ -1,21 +1,9 @@
-<div class="container shadow">
-    <div class="headerM">
-        <div class="headerM-img">
-            <img src="../../../assets/imagenes/TOCLICK.png" />
-        </div>
-
-        <div class="activo">
-            <h4>CAbot</h4>
-            <h6>Disponible</h6>
-        </div>
+<div class="container-fluid shadow contenedorChat">
+    
         <div *ngIf="servicioCarga.Cargando | async" class="loader">
             <mat-progress-bar mode="indeterminate"> </mat-progress-bar>
         </div>
-
-        <div class="d-flex flex-row">
-            <button class='p-2' (click)='limpiarChat()'>Limpiar Chat </button>
-        </div>
-    </div>
+    
 
     <div class="chat-p shadow">
         <cdk-virtual-scroll-viewport itemSize="20vh" class="caja-mensajes">
@@ -113,7 +101,7 @@
         </cdk-virtual-scroll-viewport>
     </div>
 
-    <div class="chat-botton" *ngIf="mostrarInputs">
+    <div #entradaTexto id='entradaTexto' (click)='obtenerElemento($event.target)'class="chat-botton" *ngIf="mostrarInputs">
         <form class="input-group" [formGroup]="formularioMensajes" (ngSubmit)="enviarMensaje()">
             <input required type="text" class="form-control" placeholder="Escriba su pregunta..."
                 formControlName="texto" />
