@@ -1,5 +1,5 @@
 .contenedor{
-  height: 100vh;
+  height: 100%
 }
 
 .sidenav-container {
@@ -16,6 +16,21 @@
   background: inherit;
 }
 
+.derecha{
+  position: relative;
+  left: 85vw;
+}
+
+.mostrarSoloCuando{
+  display: none;
+}
+
+.contenedorImagen{
+  height: 10%;
+}
+
+
+
 
 .heredero{
   color: inherit;
@@ -23,14 +38,21 @@
   font-style: inherit;
   font-weight: inherit;
 }
-@media (min-width:768px){
+@media (min-width:600px){
   .sidenav{
   display: none;
   }
 }
-@media (max-width:768px){
+@media (max-width:601px){
   .navPri{
     display: none;
+  }
+  .mostrarSoloCuando{
+    display:flex;
+  }
+  .derecha{
+    position: relative;
+    left: 90vw;
   }
 }
 .mat-toolbar.mat-primary {
@@ -51,7 +73,7 @@
   background-color: #283747;
   color: white;
   font-weight: bold;
-  height: 10vh;
+  height: 15vh;
 }
 
 .FondoNav2{
@@ -89,10 +111,10 @@
 }
 
 .router{
-  height: 80vh;
+  height: auto;
 }
 .piePagina{
-  height: 10vh;
+  height: auto;
 }
 
 
