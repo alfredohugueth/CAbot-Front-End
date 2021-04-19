@@ -51,6 +51,8 @@ export class ChatBoxComponent implements OnInit {
   preguntaCalificar:Boolean;
   respuestaCalificar:Boolean;
   scrollInput:HTMLElement;
+  segundos:number;
+  funcionContar:any;
 
   constructor(private sendMsgServ: SendMsgsService,
     private audioOpt: AudioOptionsService,
@@ -71,6 +73,9 @@ export class ChatBoxComponent implements OnInit {
     this.preguntaCalificar = false;
     this.respuestaCalificar = false;
     this.mostrarBotonesMasPreguntas=false;
+    this.segundos = 0;
+    this.funcionContar;
+    
 
     this.formularioMensajes = new FormGroup({
       estado: new FormControl(true),
@@ -89,6 +94,7 @@ export class ChatBoxComponent implements OnInit {
     console.log(this.domSanitizer.bypassSecurityTrustUrl(url));
     return this.domSanitizer.bypassSecurityTrustUrl(url);
   }
+  
 
   async ngOnInit(): Promise<void> {
     //Analizo si tengo datos guardados en mi local storage...
@@ -202,12 +208,17 @@ export class ChatBoxComponent implements OnInit {
     console.log(el);
     el.scrollIntoView();
   }
+
+  
   grabar() {
+    /* Inicializamos la funcion que contara cada vez que pase un segundo*/
     this.recording = true;
     let mediaConstraints = {
       video: false,
       audio: true
     };
+    this.contar(true);
+    if(this.segundos == 10) this.pararGrabar();
     navigator.mediaDevices
       .getUserMedia(mediaConstraints)
       .then(this.successCallback.bind(this), this.errorCallback.bind(this));
@@ -225,10 +236,19 @@ export class ChatBoxComponent implements OnInit {
     this.record.record();
   }
 
-  pararGrabar() {
+  enviarGrabacion() {
     this.recording = false;
     this.record.stop(this.processRecording.bind(this));
 
+  }
+
+  pararGrabar(){
+    this.contar(false);
+    this.segundos = 0
+    this.recording = false;
+    this.record.stop();
+
+    
   }
 
   async processRecording(blob) {
@@ -265,7 +285,22 @@ export class ChatBoxComponent implements OnInit {
     }, 0);
     
   }
-
+  contar(controlador:Boolean){
+    
+    if(controlador){
+      this.funcionContar = setInterval(()=>{
+        if(this.segundos == 10) {this.contar(false)
+          this.pararGrabar();
+        } 
+        else this.segundos++
+        
+      },1000)
+    }else{
+      clearInterval(this.funcionContar);
+    }
+    
+    
+  }
 
 
 
@@ -347,6 +382,10 @@ export class ChatBoxComponent implements OnInit {
     this.mostrarInputs=true;
     
   }
+  contarTiempo(){
+    this.segundos++
+    console.log(this.segundos);
+  }
 
   async enviarMensajeMasPreguntas(){
     this.contador = this.respuestas.length -1;
@@ -383,4 +422,5 @@ export class ChatBoxComponent implements OnInit {
 
 
 }
+
 

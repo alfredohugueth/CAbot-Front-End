@@ -154,6 +154,7 @@ img {
     background-color:rgb(222 154 192);
 }
 
+
 @media (max-width: 500px) {
   .headerM-img {
     border-radius: 50%;
