@@ -10,9 +10,9 @@ export class SendMsgsService {
   userID: string;
 
   constructor(private httpClient: HttpClient) { 
-    this.baseUrl='https://cabot-back-end.herokuapp.com'
+    //this.baseUrl='https://cabot-back-end.herokuapp.com'
 
-    //this.baseUrl = 'http://localhost:3000'
+    this.baseUrl = 'http://localhost:3000'
   }
 
   recieveMsg(): Promise<any>{
@@ -90,5 +90,10 @@ export class SendMsgsService {
     }
 
     return this.httpClient.post(`${this.baseUrl}/botmsg/nocalifica`,bodyRequest).toPromise();
+  }
+
+
+  obtenerNumeroPreguntasRealizadas():Promise<any>{
+    return this.httpClient.get(`${this.baseUrl}/botmsg/numero-preguntas`).toPromise();
   }
 }
