@@ -19,7 +19,18 @@
 .dashboard-card-content {
   text-align: center;
 }
-
-.container-fluid{
-  background-color: #cafafe;
+.tamaCarta{
+  height: auto;
 }
+
+.img-boot-space{
+  height: 47%;
+  width: 80%;
+  position: relative;
+  left: 10%;
+
+}
+
+/* .container-fluid{
+  background-color: #cafafe;
+} */

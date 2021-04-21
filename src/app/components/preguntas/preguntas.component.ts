@@ -3,6 +3,7 @@ import { map } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { SendMsgsService } from '../../services/send-msgs.service'
 import { Chart } from 'node_modules/chart.js';
+import { LoaderService } from '../../services/loader.service';
 
 @Component({
   selector: 'app-preguntas',
@@ -18,7 +19,7 @@ export class PreguntasComponent {
   nombresGraficas:any;
   dataGrafica:any
 
-  constructor(private breakpointObserver: BreakpointObserver,private httpClient:SendMsgsService) {
+  constructor(public servicioCarga:LoaderService, private breakpointObserver: BreakpointObserver,private httpClient:SendMsgsService) {
     this.data = [];
     this.numeroPreguntasHechas = [];
     this.valoresDatosRepetidos = 0;
@@ -90,7 +91,8 @@ export class PreguntasComponent {
             
             }
           }]
-        }
+        },
+        
       }
     });
     
