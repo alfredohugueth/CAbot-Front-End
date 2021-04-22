@@ -108,13 +108,13 @@
             <div *ngIf="recording" class="container d-flex justify-content-center ">
                 <div class="row w-100 d-flex align-content-center">
                     <!-- Boton de rechazo de envio -->
-                    <button class="btn btn-danger rounded-circle" (click)="pararGrabar()">
-                        <mat-icon>cancel</mat-icon>
+                    <button class="btn btn-outline-danger rounded-circle" (click)="pararGrabar()">
+                        <mat-icon>close</mat-icon>
                     </button>
                     <!-- Time of the recording  -->
                     <p class="ml-5 mr-5">00:{{segundos}}</p>
                     <!-- Boton de envio de audio -->
-                    <button id="boton_envio" type="submit" class="btn btn-success rounded-circle"
+                    <button id="boton_envio" type="submit" class="btn btn-outline-primary rounded-circle"
                         (click)="enviarGrabacion()">
                         <mat-icon>done</mat-icon>
                     </button>
