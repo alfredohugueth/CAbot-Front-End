@@ -182,11 +182,6 @@ export class ChatBoxComponent implements OnInit {
         this.respuestas.push(response);
 
         /* Verifico si hay botones en el mensaje recibido*/
-
-        if(response.boot.MasPreguntas){
-          this.mostrarBotonesMasPreguntas = true;
-          this.mostrarInputs = false;
-        }
         
 
         // localStorage.setItem('BufferRespuestas', JSON.stringify(this.respuestas));
@@ -238,6 +233,8 @@ export class ChatBoxComponent implements OnInit {
 
   enviarGrabacion() {
     this.recording = false;
+    this.contar(false);
+    this.segundos = 0;
     this.record.stop(this.processRecording.bind(this));
 
   }
@@ -265,6 +262,8 @@ export class ChatBoxComponent implements OnInit {
       // Enviamos los datos al char de los que dice el bot.
       this.respuestas.push(audioResponse);
       //localStorage.setItem('BufferRespuestas', JSON.stringify(this.respuestas));
+      /* Guardamos datos en db */
+      db.collection('respuestas').set(this.respuestas);
       this.audioOpt.playByteArray(audioResponse.boot.voz.data);
       this.scrollAlUltimoMensaje();
       //seteamos el nuevo valor 
@@ -296,6 +295,7 @@ export class ChatBoxComponent implements OnInit {
         
       },1000)
     }else{
+      console.log()
       clearInterval(this.funcionContar);
     }
     

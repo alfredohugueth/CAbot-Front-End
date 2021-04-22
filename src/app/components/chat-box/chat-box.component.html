@@ -7,7 +7,7 @@
 
     <div class="chat-p shadow">
         <cdk-virtual-scroll-viewport itemSize="20vh" class="caja-mensajes">
-            <div class="chats" [ngStyle]="{ 'background-image': fondoImagen }">
+            <div class="chats fondo-imagen">
                 <div class="msg" *ngFor="let respuesta of respuestas">
                     <div class="boot-msg">
                         <!-- Poner ngFor aca para mensajes del boot -->
