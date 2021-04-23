@@ -111,6 +111,8 @@ export class ChatBoxComponent implements OnInit {
         //Recibimos mensaje de la base de datos...
         var PrimerMensaje = await this.sendMsgServ.recieveMsg();
         this.respuestas.push(PrimerMensaje);
+        this.audioOpt.playByteArray(PrimerMensaje.boot.voz.data);
+
         console.log("Se realizo el push del primer mensaje de manera correcta, almacenamos respuesta en el local storage..");
         db.collection('respuestas').set(this.respuestas);
         // db.collection('respuestas').set(this.respuestas);
@@ -176,7 +178,7 @@ export class ChatBoxComponent implements OnInit {
         const response = await this.sendMsgServ.sendMsg(body);
         //Verifico si la respuesta viene con botón de confirmación...
         console.log('A punto de entrar a condicional');
-        
+        console.log(response);
 
         
         this.respuestas.push(response);

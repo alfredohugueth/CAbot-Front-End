@@ -16,8 +16,8 @@ export class SendMsgsService {
   }
 
   recieveMsg(): Promise<any>{
-     
-    return this.httpClient.get(`${this.baseUrl}/botmsg`).toPromise();
+     let id = this.userID
+    return this.httpClient.post(`${this.baseUrl}/botmsg`,{id:id}).toPromise();
     
   }
 

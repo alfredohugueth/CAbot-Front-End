@@ -18,9 +18,11 @@
                         <div class="boot-text" *ngIf="respuesta.boot.estado">
                             <div class="boot-text-inbox">
                                 <p class="shadow">
-                                    {{ respuesta.boot.texto }}
-                                    <img class="imagen_respuesta" *ngIf="respuesta.boot.mostrarImagen"
+                                    {{ respuesta.boot.texto }}  <br>
+                                    <img class="imagen_respuesta w-100" *ngIf="respuesta.boot.mostrarImagen"
                                         [src]="respuesta.boot.imagen" />
+                                    
+                                    <i><strong>{{respuesta.boot.referencia}}</strong></i>
                                 </p>
                                 <span class="tiempo">
                                     {{ respuesta.boot.fecha | date: "short" }}
