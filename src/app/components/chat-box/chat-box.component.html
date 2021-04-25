@@ -1,37 +1,38 @@
-<div class="container-fluid shadow contenedorChat">
+<div class="container-fluid shadow contenedorChat bg-secondary">
 
     <div *ngIf="servicioCarga.Cargando | async" class="loader">
         <mat-progress-bar mode="indeterminate"> </mat-progress-bar>
     </div>
 
+    <div class="container">
+        <div class="chat-p shadow">
+            <cdk-virtual-scroll-viewport itemSize="20vh" class="caja-mensajes bg-image"
+                style="background-image: url('../../../assets/imagenes/fondoHome.png');">
+                <div class="chats">
+                    <div class="msg" *ngFor="let respuesta of respuestas">
+                        <div class="boot-msg">
+                            <!-- Poner ngFor aca para mensajes del boot -->
+                            <div class="boot-img">
+                                <img class="shadow" src="../../../assets/imagenes/TOCLICK.png" />
+                            </div>
 
-    <div class="chat-p shadow">
-        <cdk-virtual-scroll-viewport itemSize="20vh" class="caja-mensajes">
-            <div class="chats fondo-imagen">
-                <div class="msg" *ngFor="let respuesta of respuestas">
-                    <div class="boot-msg">
-                        <!-- Poner ngFor aca para mensajes del boot -->
-                        <div class="boot-img">
-                            <img class="shadow" src="../../../assets/imagenes/TOCLICK.png" />
-                        </div>
+                            <div class="boot-text" *ngIf="respuesta.boot.estado">
+                                <div class="boot-text-inbox">
+                                    <p class="shadow">
+                                        {{ respuesta.boot.texto }} <br>
+                                        <img class="imagen_respuesta w-100" *ngIf="respuesta.boot.mostrarImagen"
+                                            [src]="respuesta.boot.imagen" />
 
-                        <div class="boot-text" *ngIf="respuesta.boot.estado">
-                            <div class="boot-text-inbox">
-                                <p class="shadow">
-                                    {{ respuesta.boot.texto }}  <br>
-                                    <img class="imagen_respuesta w-100" *ngIf="respuesta.boot.mostrarImagen"
-                                        [src]="respuesta.boot.imagen" />
-                                    
-                                    <i><strong>{{respuesta.boot.referencia}}</strong></i>
-                                </p>
-                                <span class="tiempo">
-                                    {{ respuesta.boot.fecha | date: "short" }}
-                                </span>
+                                        <i><strong>{{respuesta.boot.referencia}}</strong></i>
+                                    </p>
+                                    <span class="tiempo">
+                                        {{ respuesta.boot.fecha | date: "short" }}
+                                    </span>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- <div class="container-fluid p-3 my-3 bg-dark text-white mx-auto justify-content-center" *ngIf="respuesta.boot.quieroCalificar">
+                        <!-- <div class="container-fluid p-3 my-3 bg-dark text-white mx-auto justify-content-center" *ngIf="respuesta.boot.quieroCalificar">
                         <div class="boot-text" *ngIf="preguntaCalificar">
                             <div class="boot-text-inbox">
                                 <h1 class="d-flex justify-content-center">
@@ -53,7 +54,7 @@
                                     ¿Cómo calificas la experiencia de usuario de la herramienta?.
                                 </h1>
                                 <!-- Maquetar botones correctamente en el futuro -->
-                    <!-- <div class="d-flex justify-content-center">
+                        <!-- <div class="d-flex justify-content-center">
                                     <button (click)="califica('Buena')" class="btn btn-outline-success">
                                         Buena
                                     </button>
@@ -66,62 +67,63 @@
                                 </div>
                         </div>
                     </div> --> -->
-                    <div class="user-msg" *ngIf="respuesta.user.estado">
-                        <!-- Poner ngFor aca para mensajes del usuario -->
+                        <div class="user-msg" *ngIf="respuesta.user.estado">
+                            <!-- Poner ngFor aca para mensajes del usuario -->
 
-                        <div class="user-img">
-                            <img class="shadow" src="../../../assets/imagenes/user.png" />
-                        </div>
-                        <div class="user-text">
-                            <div class="user-text-inbox">
-                                <p class="shadow">{{ respuesta.user.texto }}</p>
-                                <span class="tiempo">
-                                    {{ respuesta.user.fecha | date: "short" }}
-                                </span>
+                            <div class="user-img">
+                                <img class="shadow" src="../../../assets/imagenes/user.png" />
+                            </div>
+                            <div class="user-text">
+                                <div class="user-text-inbox">
+                                    <p class="shadow">{{ respuesta.user.texto }}</p>
+                                    <span class="tiempo">
+                                        {{ respuesta.user.fecha | date: "short" }}
+                                    </span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-        </cdk-virtual-scroll-viewport>
-    </div>
+            </cdk-virtual-scroll-viewport>
+        </div>
 
-    <div #entradaTexto id='entradaTexto' (click)='obtenerElemento($event.target)'
-        class="chat-botton d-flex align-content-center" *ngIf="mostrarInputs">
-        <form class="input-group" [formGroup]="formularioMensajes" (ngSubmit)="enviarMensaje()">
-            <input *ngIf="!recording" required type="text" class="form-control" placeholder="Escriba su pregunta..."
-                formControlName="texto" />
-            <ng-template [ngIf]="formularioMensajes.invalid">
-            <button class="btn btn-success" (click)="grabar()" *ngIf="!recording">
-                <mat-icon> record_voice_over </mat-icon>
-            </button>
-            </ng-template>
-            <div class="input-group-append d-flex justify-content-center">
-                <ng-template [ngIf]="formularioMensajes.valid">
-                    <button id="boton_envio" class="btn btn-primary" type="submit"
-                        [disabled]="formularioMensajes.invalid">
-                        <mat-icon>send</mat-icon>
+        <div #entradaTexto id='entradaTexto' (click)='obtenerElemento($event.target)'
+            class="d-flex align-content-center" *ngIf="mostrarInputs">
+            <form class="input-group" [formGroup]="formularioMensajes" (ngSubmit)="enviarMensaje()">
+                <input *ngIf="!recording" required type="text" class="form-control" placeholder="Escriba su pregunta..."
+                    formControlName="texto" />
+                <ng-template [ngIf]="formularioMensajes.invalid">
+                    <button class="btn btn-success" (click)="grabar()" *ngIf="!recording">
+                        <mat-icon> record_voice_over </mat-icon>
                     </button>
                 </ng-template>
-            </div>
-        </form>
-        <ng-template class="container row w-50 d-flex align-content-center" [ngIf]="formularioMensajes.invalid">
-            <!-- Botones para parar y enviar datos por voz -->
-            <div *ngIf="recording" class="container d-flex justify-content-center ">
-                <div class="row w-100 d-flex align-content-center">
-                    <!-- Boton de rechazo de envio -->
-                    <button class="btn btn-outline-danger rounded-circle" (click)="pararGrabar()">
-                        <mat-icon>close</mat-icon>
-                    </button>
-                    <!-- Time of the recording  -->
-                    <p class="ml-5 mr-5">00:{{segundos}}</p>
-                    <!-- Boton de envio de audio -->
-                    <button id="boton_envio" type="submit" class="btn btn-outline-primary rounded-circle"
-                        (click)="enviarGrabacion()">
-                        <mat-icon>done</mat-icon>
-                    </button>
+                <div class="input-group-append d-flex justify-content-center">
+                    <ng-template [ngIf]="formularioMensajes.valid">
+                        <button id="boton_envio" class="btn btn-primary" type="submit"
+                            [disabled]="formularioMensajes.invalid">
+                            <mat-icon>send</mat-icon>
+                        </button>
+                    </ng-template>
                 </div>
-            </div>
-        </ng-template>
+            </form>
+            <ng-template class="" [ngIf]="formularioMensajes.invalid">
+                <!-- Botones para parar y enviar datos por voz -->
+                <div *ngIf="recording" class="container d-flex justify-content-center ">
+                    <div class="row w-100 d-flex align-content-center">
+                        <!-- Boton de rechazo de envio -->
+                        <button class="btn btn-danger rounded-circle" (click)="pararGrabar()">
+                            <mat-icon>close</mat-icon>
+                        </button>
+                        <!-- Time of the recording  -->
+                        <p class="ml-5 mr-5">00:{{segundos}}</p>
+                        <!-- Boton de envio de audio -->
+                        <button id="boton_envio" type="submit" class="btn btn-primary rounded-circle"
+                            (click)="enviarGrabacion()">
+                            <mat-icon>done</mat-icon>
+                        </button>
+                    </div>
+                </div>
+            </ng-template>
+        </div>
     </div>
 </div>

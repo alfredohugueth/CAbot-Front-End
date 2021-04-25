@@ -35,6 +35,7 @@ import { AngularFireModule } from '@angular/fire';
 import { environment } from '../environments/environment';
 import { NavegadorComponent } from './components/navegador/navegador.component';
 import { InstruccionesComponent } from './components/instrucciones/instrucciones.component';
+import { MoreInfoComponent } from './components/more-info/more-info.component';
 
 registerLocaleData(localeEs);
 
@@ -49,7 +50,8 @@ registerLocaleData(localeEs);
     ChatBoxComponent,
     ChartsComponent,
     NavegadorComponent,
-    InstruccionesComponent
+    InstruccionesComponent,
+    MoreInfoComponent
   ],
   imports: [
     BrowserModule,

@@ -1,6 +1,5 @@
 .container {
   width: 100%;
-  margin-top: 2%;
   font-family: sans-serif;
   letter-spacing: 0.5px;
 }
@@ -64,11 +63,8 @@ img {
 
 .caja-mensajes {
   border: 1px solid #ccc;
-  height: 70vh;
+  height: 75vh;
   padding-bottom: 30px;
-  background-image: url('../../../assets/imagenes/fondoHome.png');
-  background-repeat: no-repeat;
-  background-size: 100%; 
 }
 
 .chats {
@@ -157,6 +153,11 @@ img {
     margin-left: auto;
     margin-right: auto;
     background-color:rgb(222 154 192);
+}
+
+.margen-botones{
+  margin-left: 30%;
+  margin-right: 30%;
 }
 
 
