@@ -31,12 +31,13 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MatProgressBarModule } from '@angular/material/progress-bar'
 import { InterceptorService } from './services/interceptor.service';
 import { MatProgressSpinnerModule} from '@angular/material/progress-spinner';
-import { AngularFireModule } from '@angular/fire';
-import { environment } from '../environments/environment';
 import { NavegadorComponent } from './components/navegador/navegador.component';
 import { InstruccionesComponent } from './components/instrucciones/instrucciones.component';
-import { MoreInfoComponent } from './components/more-info/more-info.component';
+import { MatDialogModule } from "@angular/material/dialog";
+import { MoreinfoComponent } from './components/youtube/moreinfo/moreinfo.component';
+import { YoutubePlayerComponent } from './components/youtube/youtube-player/youtube-player.component';
 
+import { YouTubePlayerModule } from "@angular/youtube-player";
 registerLocaleData(localeEs);
 
 @NgModule({
@@ -51,7 +52,8 @@ registerLocaleData(localeEs);
     ChartsComponent,
     NavegadorComponent,
     InstruccionesComponent,
-    MoreInfoComponent
+    MoreinfoComponent,
+    YoutubePlayerComponent,
   ],
   imports: [
     BrowserModule,
@@ -71,7 +73,9 @@ registerLocaleData(localeEs);
     ScrollingModule,
     NgbModule,
     MatProgressBarModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    MatDialogModule,
+    YouTubePlayerModule
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'es-ES'},

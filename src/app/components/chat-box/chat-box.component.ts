@@ -10,6 +10,9 @@ import { LoaderService } from '../../services/loader.service';
 import Localbase from 'localbase'
 import { DOCUMENT } from '@angular/common'; 
 import { Inject }  from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { MoreinfoComponent } from '../youtube/moreinfo/moreinfo.component';
+import { YoutubeServiceService } from 'src/app/services/youtube-service.service';
 
 
 let db = new Localbase('db');
@@ -58,7 +61,9 @@ export class ChatBoxComponent implements OnInit {
     private audioOpt: AudioOptionsService,
     private domSanitizer: DomSanitizer,
     public servicioCarga: LoaderService,
-    @Inject(DOCUMENT) document) {
+    @Inject(DOCUMENT) document,
+    public dialog: MatDialog,
+    private youtubeService:YoutubeServiceService) {
     this.fondoImagen = '';
     this.imagenExiste = false;
     this.imagen = '';
@@ -420,6 +425,12 @@ export class ChatBoxComponent implements OnInit {
 
   scrollToElement(){
     this.scrollInput.scrollIntoView();
+  }
+
+  openDialog(array:Array<String>){
+    this.dialog.open(MoreinfoComponent);
+    /* Necesito pasarle los valores del array, para esto creo un servicio */
+    this.youtubeService.cambiarURLS(array);
   }
 
 

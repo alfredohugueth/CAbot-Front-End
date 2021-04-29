@@ -3,7 +3,6 @@
     <div *ngIf="servicioCarga.Cargando | async" class="loader">
         <mat-progress-bar mode="indeterminate"> </mat-progress-bar>
     </div>
-
     <div class="container">
         <div class="chat-p shadow">
             <cdk-virtual-scroll-viewport itemSize="20vh" class="caja-mensajes bg-image"
@@ -15,7 +14,6 @@
                             <div class="boot-img">
                                 <img class="shadow" src="../../../assets/imagenes/TOCLICK.png" />
                             </div>
-
                             <div class="boot-text" *ngIf="respuesta.boot.estado">
                                 <div class="boot-text-inbox">
                                     <p class="shadow">
@@ -28,6 +26,8 @@
                                     <span class="tiempo">
                                         {{ respuesta.boot.fecha | date: "short" }}
                                     </span>
+                                    <button mat-raised-button (click)="openDialog(['https://www.youtube.com/watch?v=bmVKaAV_7-A','https://www.youtube.com/watch?v=JepMpjhkt-4'])">Mas Información</button>
+
                                 </div>
                             </div>
                         </div>
