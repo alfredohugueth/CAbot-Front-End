@@ -26,7 +26,7 @@
                                     <span class="tiempo">
                                         {{ respuesta.boot.fecha | date: "short" }}
                                     </span>
-                                    <button mat-raised-button (click)="openDialog(['https://www.youtube.com/watch?v=bmVKaAV_7-A','https://www.youtube.com/watch?v=JepMpjhkt-4'])">Mas Información</button>
+                                    <button mat-raised-button *ngIf="respuesta.boot.videos" (click)="openDialog(respuesta.boot.videos)">Mas Información</button>
 
                                 </div>
                             </div>

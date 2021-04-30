@@ -4,6 +4,10 @@ import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 import { SendMsgsService } from '../../services/send-msgs.service'
 import { Chart } from 'node_modules/chart.js';
 import { LoaderService } from '../../services/loader.service';
+import { MatDialog } from '@angular/material/dialog';
+import { MoreinfoComponent } from '../youtube/moreinfo/moreinfo.component';
+import { YoutubeServiceService } from 'src/app/services/youtube-service.service';
+
 
 @Component({
   selector: 'app-preguntas',
@@ -19,7 +23,11 @@ export class PreguntasComponent {
   nombresGraficas:any;
   dataGrafica:any
 
-  constructor(public servicioCarga:LoaderService, private breakpointObserver: BreakpointObserver,private httpClient:SendMsgsService) {
+  constructor(public servicioCarga:LoaderService, 
+    private breakpointObserver: BreakpointObserver,
+    private httpClient:SendMsgsService,
+    public dialog: MatDialog,
+    private youtubeService:YoutubeServiceService) {
     this.data = [];
     this.numeroPreguntasHechas = [];
     this.valoresDatosRepetidos = 0;
@@ -96,6 +104,12 @@ export class PreguntasComponent {
       }
     });
     
+  }
+
+  openDialog(array:Array<String>){
+    this.dialog.open(MoreinfoComponent);
+    /* Necesito pasarle los valores del array, para esto creo un servicio */
+    this.youtubeService.cambiarURLS(array);
   }
 }
 

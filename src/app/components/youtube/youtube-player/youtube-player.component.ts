@@ -13,11 +13,8 @@ export class YoutubePlayerComponent implements OnInit {
   constructor(public youtubeService:YoutubeServiceService) { }
 
   ngOnInit(): void {
-    this.url = this.youtubeService.urlID;
-    console.log(this.url);
-    /* Realizamos la obtención del id */
-    let temporal = this.url.split("=");
-    this.id = temporal[1];
+    /* Realizamos la obtención del id */    
+    this.id = this.youtubeService.urlID;
     console.log(this.id);
     /* Enviamos el id correspondiente al html*/
     

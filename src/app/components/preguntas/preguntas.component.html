@@ -24,6 +24,9 @@
                     <p class="text-justify h5">
                         {{dat._id.Respuesta}}
                     </p>
+                    <!-- Boton de mas informacion -->
+                    <button mat-raised-button *ngIf="dat._id.videos" (click)="openDialog(dat._id.videos)">Mas Información</button>
+
                 </mat-card-content>
             </mat-card>
 
