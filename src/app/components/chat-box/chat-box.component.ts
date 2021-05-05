@@ -56,6 +56,7 @@ export class ChatBoxComponent implements OnInit {
   scrollInput:HTMLElement;
   segundos:number;
   funcionContar:any;
+  contadorMensajes:number
 
   constructor(private sendMsgServ: SendMsgsService,
     private audioOpt: AudioOptionsService,
@@ -80,6 +81,7 @@ export class ChatBoxComponent implements OnInit {
     this.mostrarBotonesMasPreguntas=false;
     this.segundos = 0;
     this.funcionContar;
+    this.contadorMensajes = 0
     
 
     this.formularioMensajes = new FormGroup({
@@ -181,6 +183,9 @@ export class ChatBoxComponent implements OnInit {
 
 
         const response = await this.sendMsgServ.sendMsg(body);
+        /* Detengo todo audio que este anteriormente reproduciendo */
+        if(this.contadorMensajes>0) await this.audioOpt.stop();
+        this.contadorMensajes++;
         //Verifico si la respuesta viene con botón de confirmación...
         console.log('A punto de entrar a condicional');
         console.log(response);

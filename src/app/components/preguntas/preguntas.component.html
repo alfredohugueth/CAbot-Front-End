@@ -1,14 +1,12 @@
 
 <div class="row">
     <div *ngIf="servicioCarga.Cargando | async" class='loader'>
-        <mat-spinner style="top:50%; left:50%"></mat-spinner>
+        <mat-spinner style="top:50%; left:50%;"></mat-spinner>
 
     </div>
-    
-
 </div>
 
-<div class="container-fluid mx-auto bg-info">
+<div class="container-fluid mx-auto bg-info preguntas" style="display: none;">
     <div class="row">
         <div class="col-xl-4">
             <div class="row justify-content-center">
@@ -25,8 +23,11 @@
                         {{dat._id.Respuesta}}
                     </p>
                     <!-- Boton de mas informacion -->
-                    <button mat-raised-button *ngIf="dat._id.videos" (click)="openDialog(dat._id.videos)">Mas Información</button>
+                    <div class="row d-flex justify-content-center">
+                        <button mat-raised-button class="btn-warning" *ngIf="dat._id.videos" (click)="openDialog(dat._id.videos)">Haz clic para más información <mat-icon>info</mat-icon></button>
 
+                    </div>
+                    
                 </mat-card-content>
             </mat-card>
 

@@ -10,6 +10,9 @@
 .contenedorTexto{
   background-color: rgb(0 0 0 / 20%);
 }
+.imagen-alfredo{
+  background-image: url('../../../assets/imagenes/Alfredo.jpg');
+}
 @media (min-width:768px){
     .limites{
       max-width: 90%;

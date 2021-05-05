@@ -38,7 +38,9 @@ export class PreguntasComponent {
   async ngOnInit(){
     /* Recibimos las respuestas mas comunes que se han hecho */
     this.data = await this.httpClient.recivePreguntasFrecuentes();
-    console.log(this.data);
+    let contenedorPreguntas:any = document.querySelector('.preguntas');
+    contenedorPreguntas.style.display = '';
+    console.log("🚀 ~ file: preguntas.component.ts ~ line 42 ~ PreguntasComponent ~ ngOnInit ~ contenedorPreguntas", contenedorPreguntas)
     /* Enviamos data para llenar el las cartas*/ 
 
     /* Recibimos el numero de preguntas realizadas por los usuarios en total para poder determinar el total pa las graficas */

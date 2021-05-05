@@ -11,6 +11,8 @@ export class AudioOptionsService {
   private error;
   recording = false;
   temp: any;
+  reproductor: AudioBufferSourceNode
+
   
 
   constructor(private domSanitizer: DomSanitizer, private sendMsgs: SendMsgsService) { 
@@ -27,8 +29,8 @@ export class AudioOptionsService {
     for (let i = 0; i < byteArray.length; i++) {
       bufferView[i] = byteArray[i];
     }
-    let context = new AudioContext();
-    context.decodeAudioData(
+    let reproductor = new AudioContext();
+    reproductor.decodeAudioData(
       arrayBuffer,
       function(buffer) {
         this.play(buffer);
@@ -39,12 +41,17 @@ export class AudioOptionsService {
   play(buf) {
     // Create a source node from the buffer
     let context = new AudioContext();
-    var source = context.createBufferSource();
-    source.buffer = buf;
+    this.reproductor = context.createBufferSource();
+    this.reproductor.buffer = buf;
     // Connect to the final output node (the speakers)
-    source.connect(context.destination);
+    this.reproductor.connect(context.destination);
     // Play immediately
-    source.start(0);
+    this.reproductor.start(0);
+    
+  }
+
+  stop(){
+    this.reproductor.stop();
   }
 
   // Interactuar con audio de entrada.

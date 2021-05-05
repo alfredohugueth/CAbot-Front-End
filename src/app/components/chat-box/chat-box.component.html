@@ -16,7 +16,7 @@
                             </div>
                             <div class="boot-text" *ngIf="respuesta.boot.estado">
                                 <div class="boot-text-inbox">
-                                    <p class="shadow">
+                                    <p class="shadow text-justify">
                                         {{ respuesta.boot.texto }} <br>
                                         <img class="imagen_respuesta w-100" *ngIf="respuesta.boot.mostrarImagen"
                                             [src]="respuesta.boot.imagen" />
@@ -26,7 +26,7 @@
                                     <span class="tiempo">
                                         {{ respuesta.boot.fecha | date: "short" }}
                                     </span>
-                                    <button mat-raised-button *ngIf="respuesta.boot.videos" (click)="openDialog(respuesta.boot.videos)">Mas Información</button>
+                                    <button mat-raised-button class="btn-warning" *ngIf="respuesta.boot.videos" (click)="openDialog(respuesta.boot.videos)">Haz clic para más información <mat-icon>info</mat-icon></button>
 
                                 </div>
                             </div>
@@ -75,7 +75,7 @@
                             </div>
                             <div class="user-text">
                                 <div class="user-text-inbox">
-                                    <p class="shadow">{{ respuesta.user.texto }}</p>
+                                    <p class="shadow text-justify">{{ respuesta.user.texto }}</p>
                                     <span class="tiempo">
                                         {{ respuesta.user.fecha | date: "short" }}
                                     </span>

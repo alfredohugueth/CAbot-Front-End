@@ -1,39 +1,126 @@
-<!-- Corregir los imagenes de cada src, solucionara el problema -->
-<ngb-carousel class="bg-secondary" *ngIf="imagenes">
-  <ng-template ngbSlide>
-    <div class="container">
+<div class="container-fluid bg-secondary">
 
-      <img class='imagenesSlider' [src]="imagenes[0]" alt="Random first slide">
+  <div class="row col-md-12">
+    <div class="col-md-6">
+      <!-- Explicación de proyecto -->
+      <mat-card>
+        <mat-card-title>
+          Justificación del proyecto
+        </mat-card-title>
 
-      <div class="carousel-caption contenedorTexto">
-        <h3>Alfredo Hugueth Polo</h3>
-        <p>Ingeniero electrónico encargado de la <b>programación
-          de la pagina web</b></p>
-        <p class='h6'>Contacto: <b>alfredohugueth99@gmail.com</b></p>
+        <mat-card-content>
+          <p mat-card-content class="h5 mt-3 text-justify" style="font-weight: normal;">
+            Actualmente, la IA viene impactando en gran medida a nuestra sociedad, ya que genera la habilidad a los
+            equipos de cómputo de realizar tareas que normalmente necesitan de inteligencia humana [2]. La integración
+            sistemática de la inteligencia artificial en la educación tiene la capacidad potencial para hacer frente a
+            algunos de los grandes desafíos de la educación de hoy en día, de elaborar prácticas de enseñanza y
+            aprendizaje innovadoras que actúan en pro de la calidad de la educación [3]. En este proyecto se
+            desarrollará un prototipo que consta de una plataforma web equipada con IA, capaz de responder a preguntas
+            que realizan los estudiantes sobre temáticas relacionadas con la asignatura Control Automático. Se pretende
+            dinamizar y diversificar los ambientes de aprendizaje, con formas innovadoras de transmitir los contenidos a
+            través de diferentes interacciones que se adaptan al usuario como lo son los entornos inteligentes y
+            chatbots [4].
+
+          </p>
+        </mat-card-content>
+
+        <mat-card-subtitle>
+          <p>
+            <b> Referencias:</b>
+          </p>
+          <br>
+
+          <p> 
+            [1] Santuario, A. A. (2020). Educación superior y COVID-19: una perspectiva comparada. Educación y pandemia: una visión académica, 75-82.
+          </p>
+          
+          <p> 
+            [2] Rouhiainen, L. (2018). Inteligencia artificial. Madrid: Alienta Editorial.
+          </p>
+
+          <p>
+            [3] UNESCO (2020). La inteligencia artificial en la educación.
+          </p>
+
+          <p>
+            [4] Holmes, W., Bialik, M. and Fadel, C., 2019. Artificial Intelligence in Education. https://curriculumredesign.org/wp-content/uploads/AIED-Book-Excerpt-CCR.pdf
+
+          </p>
+
+        </mat-card-subtitle>
+      </mat-card>
+    </div>
+    <div class="col-md-6">
+      <div class="col-12 mt-4">
+        <mat-card class="example-card">
+          <mat-card-header>
+            <img mat-card-avatar src="../../../assets/imagenes/Alfredo.jpg">
+            <mat-card-title>Alfredo Hugueth Polo</mat-card-title>
+            <mat-card-subtitle class="text-justify">
+              Estudiante de ingeniería Electrónica
+            </mat-card-subtitle>
+          </mat-card-header>
+
+          <mat-card-content>
+            <p class="h5 text-justify" style="font-weight: normal ;">
+              Ingeniero encargado de la programación del frontend y backend de la aplicación. Usando tecnologías a
+              la
+              vanguardia, como lo son Angular y Node.
+            </p>
+            <div class="w-100"></div>
+            <p>Contacto: <b>alfredohugueth99@gmail.com</b></p>
+          </mat-card-content>
+        </mat-card>
+
+      </div>
+
+      <div class="col-12 mt-3">
+
+        <mat-card class="example-card">
+          <mat-card-header>
+            <img mat-card-avatar src="../../../assets/imagenes/Luis.png">
+            <mat-card-title>Luis Gómez Castro</mat-card-title>
+            <mat-card-subtitle>Estudiante de ingeniería Electrónica</mat-card-subtitle>
+          </mat-card-header>
+
+          <mat-card-content>
+            <p class="h5 text-justify" style="font-weight: normal ;">
+              Ingeniero encargado del entrenamiento de la IA usando DialogFlow junto a conocimientos adquiridos
+              acerca el análisis de datos.
+            </p>
+            <div class="w-100"></div>
+            <p>Contacto: <b>egluis@uninorte.edu.co</b></p>
+          </mat-card-content>
+        </mat-card>
+
+      </div>
+      <div class="col-12 mt-3">
+
+
+        <mat-card class="example-card">
+          <mat-card-header>
+            <img mat-card-avatar src="../../../assets/imagenes/Christian.jpeg">
+            <mat-card-title>Christian Quintero Monroy</mat-card-title>
+            <mat-card-subtitle>Ingeniero Electrónico</mat-card-subtitle>
+          </mat-card-header>
+
+          <mat-card-content>
+            <p class="h5 text-justify" style="font-weight: normal ;">
+              Ingeniero encargado de supervisar y asesorar a los estudiantes con el fin del cumplimiento de los
+              objetivos
+              planteados para el proyecto.
+            </p>
+            <div class="w-100"></div>
+            <p>Contacto: <b>christianq@uninorte.edu.co</b></p>
+          </mat-card-content>
+        </mat-card>
+
+
+
       </div>
     </div>
-  </ng-template>
-  <ng-template ngbSlide>
-    <div class="container">
 
-      <img class='imagenesSlider' [src]="imagenes[1]" alt="Random second slide">
-      <div class="carousel-caption contenedorTexto">
-        <h3>Luis Gómez Castro</h3>
-        <p>Ingeniero electrónico encargado del <b>entrenamiento de la IA utilizando DialogFlow</b></p>
-        <p class='h6'>Contacto: <b>egluis@uninorte.edu.co</b></p>
-      </div>
-    </div>
-  </ng-template>
-  <ng-template ngbSlide>
-    <div class="container">
 
-      <img class='imagenesSlider' [src]="imagenes[2]" alt="Random first slide">
+  </div>
 
-      <div class="carousel-caption contenedorTexto">
-        <h3>Christian Quintero Monroy</h3>
-        <p>Ingeniero electrónico <b>asesor del proyecto</b></p>
-        <p class='h6'>Contacto: <b>christianq@uninorte.edu.co</b></p>
-      </div>
-    </div>
-  </ng-template>
-  </ngb-carousel>
+</div>
