@@ -57,6 +57,7 @@ export class ChatBoxComponent implements OnInit {
   segundos:number;
   funcionContar:any;
   contadorMensajes:number
+  controladorAudio : Boolean[];
 
   constructor(private sendMsgServ: SendMsgsService,
     private audioOpt: AudioOptionsService,
@@ -82,6 +83,7 @@ export class ChatBoxComponent implements OnInit {
     this.segundos = 0;
     this.funcionContar;
     this.contadorMensajes = 0
+    
     
 
     this.formularioMensajes = new FormGroup({
@@ -112,17 +114,16 @@ export class ChatBoxComponent implements OnInit {
       // en caso tal, creamos la entrada:
       if (respuestas.length === 0) {
         console.log('Database local vacio');
+
         //creamos la entrada en el localdatabase ...
         console.log('Entramos a condicional para crear el item del indexDB...');
         //Recibimos mensaje de la base de datos...
         var PrimerMensaje = await this.sendMsgServ.recieveMsg();
+        PrimerMensaje.boot.reproducir = false;
         this.respuestas.push(PrimerMensaje);
-        this.audioOpt.playByteArray(PrimerMensaje.boot.voz.data);
 
         console.log("Se realizo el push del primer mensaje de manera correcta, almacenamos respuesta en el local storage..");
         db.collection('respuestas').set(this.respuestas);
-        // db.collection('respuestas').set(this.respuestas);
-        console.log("Primer seteo de local storage exitoso");
       }else{
         //Llamamos a la database para setear los valores obtenidos anteriormente
         console.log('DB no vacio');
@@ -195,6 +196,7 @@ export class ChatBoxComponent implements OnInit {
         console.log('A punto de entrar a condicional');
         console.log(response);
 
+        response.boot.reproducir = false;
         
         this.respuestas.push(response);
 
@@ -442,6 +444,56 @@ export class ChatBoxComponent implements OnInit {
     /* Necesito pasarle los valores del array, para esto creo un servicio */
     this.youtubeService.cambiarURLS(array);
   }
+
+  async reproducirAudio ( audio, i ) {
+
+    /* Detenemos los audios que se esten reproduciendo en el momento */
+    if(this.contadorMensajes > 0) this.audioOpt.stop();
+    
+    console.log(i);
+    /* Quitamos todos los reproductores que esten actualmente en uso */
+
+    for(let respuesta of this.respuestas){
+
+      respuesta.boot.reproducir = false;
+
+    }
+    await this.audioOpt.playByteArray( audio )
+    this.respuestas[i].boot.reproducir = true;
+    
+    
+    this.contadorMensajes++
+    console.log(this.audioOpt.duracionAudio);
+    
+      /* Creamos un evento que se reproduzca cuando el audio termine */
+      setTimeout( () => {
+        this.respuestas[i].boot.reproducir = false;
+      },this.audioOpt.duracionAudio*1000);
+
+      console.log(this.getAudioDuration( audio, 1, 1.4, 1));
+      console.log(this.respuestas[i].boot);
+    
+    
+
+  }
+
+  getAudioDuration(arrayBuffer, numChannels, sampleRate, isFloatingPoint) {
+    // PCM 16 or Float32
+    const bytesPerSample = (isFloatingPoint ? Float32Array : Uint16Array).BYTES_PER_ELEMENT
+    
+    console.log(bytesPerSample);
+    // total samples/frames
+    const totalSamples = arrayBuffer.length / bytesPerSample / numChannels 
+    console.log(totalSamples);
+    // total seconds
+    return totalSamples / sampleRate
+  }
+
+  detenerAudio ( index ) {
+    this.audioOpt.stop();
+    this.respuestas[ index ].boot.reproducir = false;
+    this.contadorMensajes++;
+  }  
 
 
 }

@@ -8,7 +8,7 @@
             <cdk-virtual-scroll-viewport id="caja_mensajes" itemSize="20vh" class="caja-mensajes bg-image"
                 style="background-image: url('../../../assets/imagenes/fondoHome.png');">
                 <div class="chats">
-                    <div class="msg" *ngFor="let respuesta of respuestas">
+                    <div class="msg" *ngFor="let respuesta of respuestas; let i = index" [attr.data-index]="i">
                         <div class="boot-msg">
                             <!-- Poner ngFor aca para mensajes del boot -->
                             <div class="boot-img">
@@ -17,6 +17,8 @@
                             <div class="boot-text" *ngIf="respuesta.boot.estado">
                                 <div class="boot-text-inbox">
                                     <p class="shadow text-justify">
+                                        <button *ngIf="!respuesta.boot.reproducir" mat-button class="btn btn-info" (click)="reproducirAudio(respuesta.boot.voz.data, i)"> <mat-icon>play_arrow</mat-icon> </button>
+                                        <button *ngIf="respuesta.boot.reproducir" mat-button class="btn btn-secondary" (click)="detenerAudio(i)"> <mat-icon>pause</mat-icon> </button>
                                         {{ respuesta.boot.texto }} <br>
                                         <img class="imagen_respuesta w-100" *ngIf="respuesta.boot.mostrarImagen"
                                             [src]="respuesta.boot.imagen" />

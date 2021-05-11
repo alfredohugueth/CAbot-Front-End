@@ -11,7 +11,8 @@ export class AudioOptionsService {
   private error;
   recording = false;
   temp: any;
-  reproductor: AudioBufferSourceNode
+  reproductor: AudioBufferSourceNode;
+  duracionAudio: number;
 
   
 
@@ -30,16 +31,18 @@ export class AudioOptionsService {
       bufferView[i] = byteArray[i];
     }
     let reproductor = new AudioContext();
-    reproductor.decodeAudioData(
+    return reproductor.decodeAudioData(
       arrayBuffer,
       function(buffer) {
         this.play(buffer);
+        
       }.bind(this)
     );
   }
 
   play(buf) {
     // Create a source node from the buffer
+    this.duracionAudio = buf.duration;
     let context = new AudioContext();
     this.reproductor = context.createBufferSource();
     this.reproductor.buffer = buf;
@@ -47,6 +50,7 @@ export class AudioOptionsService {
     this.reproductor.connect(context.destination);
     // Play immediately
     this.reproductor.start(0);
+    
     
   }
 
