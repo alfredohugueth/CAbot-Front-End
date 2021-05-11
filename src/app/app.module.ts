@@ -16,6 +16,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
+import { MatSelectModule } from "@angular/material/select";
 import { HomeComponent } from './components/home/home.component';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
@@ -75,7 +76,8 @@ registerLocaleData(localeEs);
     MatProgressBarModule,
     MatProgressSpinnerModule,
     MatDialogModule,
-    YouTubePlayerModule
+    YouTubePlayerModule,
+    MatSelectModule
   ],
   providers: [
     {provide: LOCALE_ID, useValue: 'es-ES'},

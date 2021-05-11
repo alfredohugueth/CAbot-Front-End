@@ -38,9 +38,6 @@ export class PreguntasComponent {
   async ngOnInit(){
     /* Recibimos las respuestas mas comunes que se han hecho */
     this.data = await this.httpClient.recivePreguntasFrecuentes();
-    let contenedorPreguntas:any = document.querySelector('.preguntas');
-    contenedorPreguntas.style.display = '';
-    console.log("🚀 ~ file: preguntas.component.ts ~ line 42 ~ PreguntasComponent ~ ngOnInit ~ contenedorPreguntas", contenedorPreguntas)
     /* Enviamos data para llenar el las cartas*/ 
 
     /* Recibimos el numero de preguntas realizadas por los usuarios en total para poder determinar el total pa las graficas */
@@ -92,16 +89,16 @@ export class PreguntasComponent {
         }]
       },
       options: {
-        scales: {
-          yAxes: [{
-            label:"Fecha",
-            ticks: {
-              beginAtZero: true,
-              
+        responsive : true,
+        maintainAspectRatio : false,
+        plugins: {
+          legend: {
             
-            }
-          }]
-        },
+            position : 'hidden'
+          
+          }
+
+        }
         
       }
     });
@@ -112,6 +109,10 @@ export class PreguntasComponent {
     this.dialog.open(MoreinfoComponent);
     /* Necesito pasarle los valores del array, para esto creo un servicio */
     this.youtubeService.cambiarURLS(array);
+  }
+
+  generarGrafica ( tipo ) {
+    console.log( tipo );
   }
 }
 
