@@ -99,7 +99,7 @@
                         <mat-form-field>
                             <mat-label>Tipos de gráficos</mat-label>
                             
-                            <mat-select id="selector_grafica">
+                            <mat-select (valueChange)="generarGrafica($event)" [(value)]="selectedValue">
                                 
                                 <mat-option selected disabled> Selecciona el tipo de gráfica que desees. </mat-option>
                                 <mat-option value="line"> Línea </mat-option>
@@ -107,10 +107,7 @@
                                 <mat-option value="radar"> Radar </mat-option>
                                 <mat-option value="doughnut"> Dona </mat-option>
                                 <mat-option value="polarArea"> Polar </mat-option>
-                                <mat-option value="bubble"> Burbujas </mat-option>
-                                <mat-option value="scatter"> Dispersión </mat-option>
-    
-    
+                              
                             </mat-select>
 
                         </mat-form-field>
