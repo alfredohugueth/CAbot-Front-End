@@ -25,7 +25,7 @@ let db = new Localbase('db');
 })
 export class ChatBoxComponent implements OnInit {
   @ViewChild(CdkVirtualScrollViewport)
-  viewport: CdkVirtualScrollViewport;
+  public viewport: CdkVirtualScrollViewport;
   
   //Lets initiate Record OBJ
   private record;
@@ -104,9 +104,8 @@ export class ChatBoxComponent implements OnInit {
   
 
   async ngOnInit(): Promise<void> {
+    console.log('Primero es ngInit');
     //Analizo si tengo datos guardados en mi local storage...
-    
-    let almacenaje = localStorage.getItem('BufferRespuestas');
     db.collection('respuestas').get().then(async(respuestas) => {
       console.log(respuestas);
       //Verificamos si el array es vacio ...
@@ -129,19 +128,25 @@ export class ChatBoxComponent implements OnInit {
         console.log('DB no vacio');
         //Llamamos el array almacenado .
         this.respuestas =respuestas;
-        this.scrollAlUltimoMensaje();
       //Actualizamos el valor del contador
-        this.contador = this.respuestas.length - 1;
-
+        this.contador = this.respuestas.length-1;
+        this.scrollToLast();
       }
 
     })
 
 
   }
-  ngAfterViewChecked() {
-    this.scroll = this.viewport.getElementRef;
+
+  scrollToLast () {
+    setTimeout(() => {
+      this.viewport.scrollToIndex(this.respuestas.length);
+      this.viewport.scrollTo({
+        bottom: 0
+      });
+    }, 0);
   }
+  
 
   async enviarMensaje() {
     //Verificamos que el campo no este vacio de texto no este vacio ...
