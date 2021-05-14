@@ -204,7 +204,6 @@ export class ChatBoxComponent implements OnInit {
         
 
         // localStorage.setItem('BufferRespuestas', JSON.stringify(this.respuestas));
-        this.audioOpt.playByteArray(response.boot.voz.data);
         this.scrollAlUltimoMensaje();
         // Actualizamos El valor del database ...
         db.collection('respuestas').set(this.respuestas);
@@ -283,7 +282,6 @@ export class ChatBoxComponent implements OnInit {
       //localStorage.setItem('BufferRespuestas', JSON.stringify(this.respuestas));
       /* Guardamos datos en db */
       db.collection('respuestas').set(this.respuestas);
-      this.audioOpt.playByteArray(audioResponse.boot.voz.data);
       this.scrollAlUltimoMensaje();
       //seteamos el nuevo valor 
     } catch (err) {
@@ -446,7 +444,7 @@ export class ChatBoxComponent implements OnInit {
   }
 
   async reproducirAudio ( audio, i ) {
-
+    console.log(this.contadorMensajes);
     /* Detenemos los audios que se esten reproduciendo en el momento */
     if(this.contadorMensajes > 0) this.audioOpt.stop();
     

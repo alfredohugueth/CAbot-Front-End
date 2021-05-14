@@ -3,7 +3,7 @@
     <div class="container d-flex justify-content-center">
         <ul mat-dialog-content style="list-style: none;">
             <!-- Cada boton abrira un dialog con un url diferente -->
-            <li *ngFor="let url of urls"><button mat-button (click)="openVideo(url.url.stringValue)">{{ url.titulo.stringValue }}</button></li>
+            <li *ngFor="let url of urls"><button mat-button (click)="openVideo(url.url)">{{ url.titulo }}</button></li>
             
         </ul>
     </div>
