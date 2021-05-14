@@ -8,6 +8,7 @@ export class YoutubeServiceService {
   /* Creamos la variable con la que llamaremos a las urls*/
   arrayUrls:Array<String>;
   urlID:String;
+  
 
   constructor() { 
 

@@ -13,18 +13,20 @@ export class AudioOptionsService {
   temp: any;
   reproductor: AudioBufferSourceNode;
   duracionAudio: number;
+  contadorReproduccionesAudio : number;
 
   
 
   constructor(private domSanitizer: DomSanitizer, private sendMsgs: SendMsgsService) { 
     this.temp = 0;
+    this.contadorReproduccionesAudio = 0;
   }
   sanitize(url:string){
     return this.domSanitizer.bypassSecurityTrustUrl(url);
 }
   // Reproducir audio de respuesta
   playByteArray(byteArray) {
-    
+    this.contadorReproduccionesAudio++
     var arrayBuffer = new ArrayBuffer(byteArray.length);
     var bufferView = new Uint8Array(arrayBuffer);
     for (let i = 0; i < byteArray.length; i++) {

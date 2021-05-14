@@ -28,7 +28,7 @@
                                     <span class="tiempo">
                                         {{ respuesta.boot.fecha | date: "short" }}
                                     </span>
-                                    <button mat-raised-button class="btn-warning" *ngIf="respuesta.boot.videos" (click)="openDialog(respuesta.boot.videos)">Haz clic para más información <mat-icon>info</mat-icon></button>
+                                    <button mat-raised-button class="btn-warning" *ngIf="respuesta.boot.videos && respuesta.boot.videos.length > 0" (click)="openDialog(respuesta.boot.videos)">Haz clic para más información <mat-icon>info</mat-icon></button>
 
                                 </div>
                             </div>

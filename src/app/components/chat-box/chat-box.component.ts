@@ -139,6 +139,10 @@ export class ChatBoxComponent implements OnInit {
 
   }
 
+  ngOnDestroy(): void {
+    if ( this.audioOpt.contadorReproduccionesAudio > 0 ) this.audioOpt.stop()
+  }
+
   scrollToLast () {
     setTimeout(() => {
       this.viewport.scrollToIndex(this.respuestas.length);
@@ -190,7 +194,7 @@ export class ChatBoxComponent implements OnInit {
 
         const response = await this.sendMsgServ.sendMsg(body);
         /* Detengo todo audio que este anteriormente reproduciendo */
-        if(this.contadorMensajes>0) await this.audioOpt.stop();
+        if( this.audioOpt.contadorReproduccionesAudio > 0 ) await this.audioOpt.stop();
         this.contadorMensajes++;
         //Verifico si la respuesta viene con botón de confirmación...
         console.log('A punto de entrar a condicional');
@@ -446,7 +450,7 @@ export class ChatBoxComponent implements OnInit {
   async reproducirAudio ( audio, i ) {
     console.log(this.contadorMensajes);
     /* Detenemos los audios que se esten reproduciendo en el momento */
-    if(this.contadorMensajes > 0) this.audioOpt.stop();
+    if( this.audioOpt.contadorReproduccionesAudio > 0 ) this.audioOpt.stop();
     
     console.log(i);
     /* Quitamos todos los reproductores que esten actualmente en uso */
