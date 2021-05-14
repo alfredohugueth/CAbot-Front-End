@@ -70,7 +70,7 @@
                             {{dat._id.Respuesta}}
                         </p>
                         <div class="row d-flex justify-content-center">
-                            <button mat-raised-button class="btn-warning" *ngIf="dat._id.videos" (click)="openDialog(dat._id.videos)">Haz clic para más información <mat-icon>info</mat-icon></button>
+                            <button mat-raised-button class="btn-warning" *ngIf="dat._id.videos && dat._id.videos.length > 0" (click)="openDialog(dat._id.videos)">Haz clic para más información <mat-icon>info</mat-icon></button>
     
                         </div>
                         
