@@ -122,8 +122,14 @@ export class ChatBoxComponent implements OnInit {
         PrimerMensaje.boot.reproducir = false;
         this.respuestas.push(PrimerMensaje);
 
+
+
         console.log("Se realizo el push del primer mensaje de manera correcta, almacenamos respuesta en el local storage..");
-        db.collection('respuestas').set(this.respuestas);
+        
+        await db.collection('respuestas').set(this.respuestas);
+        
+        this.reproducirAudio( PrimerMensaje.boot.voz.data, this.respuestas.length-1 );
+
       }else{
         //Llamamos a la database para setear los valores obtenidos anteriormente
         console.log('DB no vacio');
@@ -201,8 +207,11 @@ export class ChatBoxComponent implements OnInit {
         console.log(response);
 
         response.boot.reproducir = false;
+
+        
         
         this.respuestas.push(response);
+
 
         /* Verifico si hay botones en el mensaje recibido*/
         
@@ -210,7 +219,11 @@ export class ChatBoxComponent implements OnInit {
         // localStorage.setItem('BufferRespuestas', JSON.stringify(this.respuestas));
         this.scrollAlUltimoMensaje();
         // Actualizamos El valor del database ...
-        db.collection('respuestas').set(this.respuestas);
+        await db.collection('respuestas').set(this.respuestas);
+
+        /* Reproducimos el audio*/
+        this.reproducirAudio( response.boot.voz.data, this.respuestas.length-1 );
+
       } catch (error) {
         console.log(error);
       }
@@ -285,9 +298,11 @@ export class ChatBoxComponent implements OnInit {
       this.respuestas.push(audioResponse);
       //localStorage.setItem('BufferRespuestas', JSON.stringify(this.respuestas));
       /* Guardamos datos en db */
-      db.collection('respuestas').set(this.respuestas);
+      await db.collection('respuestas').set(this.respuestas);
       this.scrollAlUltimoMensaje();
       //seteamos el nuevo valor 
+      this.reproducirAudio( audioResponse.boot.voz.data, this.respuestas.length-1 );
+
     } catch (err) {
       console.log(err);
     }
