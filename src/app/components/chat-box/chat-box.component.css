@@ -65,10 +65,13 @@ img {
   border: 1px solid #ccc;
   height: 75vh;
   padding-bottom: 30px;
+  
+
 }
 
 .chats {
   padding: 30px 15px 0 25px;
+  z-index: 9999;
 }
 
 .msg {

@@ -6,7 +6,7 @@
     <div class="container">
         <div class="chat-p shadow">
             <cdk-virtual-scroll-viewport id="caja_mensajes" itemSize="20vh" class="caja-mensajes bg-image"
-                style="background-image: url('../../../assets/imagenes/fondoHome.png');">
+                style="background-image: url('../../../assets/imagenes/Fondo-chat.png');">
                 <div class="chats">
                     <div class="msg" *ngFor="let respuesta of respuestas; let i = index" [attr.data-index]="i">
                         <div class="boot-msg">
@@ -32,42 +32,6 @@
                                 </div>
                             </div>
                         </div>
-
-                        <!-- <div class="container-fluid p-3 my-3 bg-dark text-white mx-auto justify-content-center" *ngIf="respuesta.boot.quieroCalificar">
-                        <div class="boot-text" *ngIf="preguntaCalificar">
-                            <div class="boot-text-inbox">
-                                <h1 class="d-flex justify-content-center">
-                                    ¿Desea calificar la experiencia de Usuario?
-                                </h1>
-
-                                <div class="d-flex justify-content-center">
-                                    <button (click)="CalificarSi()" class="btn btn-outline-success">
-                                        Sí
-                                    </button>
-                                    <button (click)="CalificarNo()" class="btn btn-outline-danger">
-                                        No
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div *ngIf="respuestaCalificar">
-                                <h1 class="d-flex justify-content-center">
-                                    ¿Cómo calificas la experiencia de usuario de la herramienta?.
-                                </h1>
-                                <!-- Maquetar botones correctamente en el futuro -->
-                        <!-- <div class="d-flex justify-content-center">
-                                    <button (click)="califica('Buena')" class="btn btn-outline-success">
-                                        Buena
-                                    </button>
-                                    <button (click)="califica('Regular')" class="btn btn-outline-warning">
-                                        Regular
-                                    </button>
-                                    <button (click)="califica('Mala')" class="btn btn-outline-danger">
-                                        Mala
-                                    </button>
-                                </div>
-                        </div>
-                    </div> --> -->
                         <div class="user-msg" *ngIf="respuesta.user.estado">
                             <!-- Poner ngFor aca para mensajes del usuario -->
 
@@ -90,8 +54,8 @@
 
         <div *ngIf="controllerInput" #entradaTexto id='entradaTexto' (click)='obtenerElemento($event.target)'
             class="d-flex align-content-center">
-            <form class="input-group" [formGroup]="formularioMensajes" (ngSubmit)="enviarMensaje()">
-                <input *ngIf="!recording" required type="text" class="form-control" placeholder="Escriba su pregunta..."
+            <form class="input-group" *ngIf="!recording" [formGroup]="formularioMensajes" (ngSubmit)="enviarMensaje()">
+                <input required type="text" class="form-control" placeholder="Escriba su pregunta..."
                     formControlName="texto" />
                 <ng-template [ngIf]="formularioMensajes.invalid">
                     <button class="btn btn-success" (click)="grabar()" *ngIf="!recording">
@@ -107,10 +71,10 @@
                     </ng-template>
                 </div>
             </form>
-            <ng-template class="" [ngIf]="formularioMensajes.invalid">
+            <ng-template class="container" [ngIf]="formularioMensajes.invalid">
                 <!-- Botones para parar y enviar datos por voz -->
-                <div *ngIf="recording" class="container d-flex justify-content-center ">
-                    <div class="row w-100 d-flex align-content-center">
+                <div *ngIf="recording" class="" style="margin-left: auto; margin-right: auto;">
+                    <div class="row">
                         <!-- Boton de rechazo de envio -->
                         <button class="btn btn-danger rounded-circle" (click)="pararGrabar()">
                             <mat-icon>close</mat-icon>
