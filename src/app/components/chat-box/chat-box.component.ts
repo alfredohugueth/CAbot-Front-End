@@ -58,6 +58,7 @@ export class ChatBoxComponent implements OnInit {
   funcionContar:any;
   contadorMensajes:number
   controladorAudio : Boolean[];
+  controllerInput: Boolean;
 
   constructor(private sendMsgServ: SendMsgsService,
     private audioOpt: AudioOptionsService,
@@ -82,7 +83,8 @@ export class ChatBoxComponent implements OnInit {
     this.mostrarBotonesMasPreguntas=false;
     this.segundos = 0;
     this.funcionContar;
-    this.contadorMensajes = 0
+    this.contadorMensajes = 0;
+    this.controllerInput = true;
     
     
 
@@ -195,10 +197,16 @@ export class ChatBoxComponent implements OnInit {
           userid: new FormControl(this.userID)
   
         })
+        /* Escondemos el input de entrada */
 
-
+        this.controllerInput = false;
 
         const response = await this.sendMsgServ.sendMsg(body);
+
+        /* Mostramos nuevamente el input */
+
+        this.controllerInput = true;
+        
         /* Detengo todo audio que este anteriormente reproduciendo */
         if( this.audioOpt.contadorReproduccionesAudio > 0 ) await this.audioOpt.stop();
         this.contadorMensajes++;
@@ -288,7 +296,13 @@ export class ChatBoxComponent implements OnInit {
     formData.append('pregunta', blob, 'audio.wav');
     formData.append('id', this.userID);
     try {
+      
+      this.controllerInput = false;
+
       const audioResponse = await this.sendMsgServ.sendAudio(formData);
+
+      this.controllerInput = true;
+
       // Enviamos los datos al chat de lo que dice el usuario.
       this.respuestas[this.contador].user.texto = audioResponse.user.texto;
       this.respuestas[this.contador].user.estado = true;

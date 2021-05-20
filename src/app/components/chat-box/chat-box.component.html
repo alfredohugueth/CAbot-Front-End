@@ -88,8 +88,8 @@
             </cdk-virtual-scroll-viewport>
         </div>
 
-        <div #entradaTexto id='entradaTexto' (click)='obtenerElemento($event.target)'
-            class="d-flex align-content-center" *ngIf="mostrarInputs">
+        <div *ngIf="controllerInput" #entradaTexto id='entradaTexto' (click)='obtenerElemento($event.target)'
+            class="d-flex align-content-center">
             <form class="input-group" [formGroup]="formularioMensajes" (ngSubmit)="enviarMensaje()">
                 <input *ngIf="!recording" required type="text" class="form-control" placeholder="Escriba su pregunta..."
                     formControlName="texto" />
