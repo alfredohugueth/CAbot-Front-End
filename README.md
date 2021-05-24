@@ -1,15 +1,16 @@
 # CAbotFrontEnd
 
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.0.
+<p align="justify"> This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.0. </p>
 
 <p align='center'>
 <img src="https://www.vectorlogo.zone/logos/angular/angular-icon.svg" alt="Angular" width="40" height="40"> 
 </p>
 
 ## Description
-
+<p align='justify'>
 This repository contains all the code of the front-end of the project CAbot, a virtual assistant developed to answer common questions about automatic control.
+</p>
 
 ## Technologies
 
@@ -30,7 +31,9 @@ This repository contains all the code of the front-end of the project CAbot, a v
 
 ## Development server
 
+<p align='justify'>
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+</p>
 
 ## Code scaffolding
 
