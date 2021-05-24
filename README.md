@@ -1,10 +1,26 @@
 # CAbotFrontEnd
 
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.0.
+
+<p align='center'>
+<img src="https://www.vectorlogo.zone/logos/angular/angular-icon.svg" alt="Angular" width="40" height="40"> 
+</p>
 
 ## Description
 
 This repository contains all the code of the front-end of the project CAbot, a virtual assistant developed to answer common questions about automatic control.
+
+## Technologies
+
+<p align='center'> 
+<img alt="CSS3" width="40" height="40" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/css/css.png">
+<img alt="CSS3" width="40" height="40" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/html/html.png">
+<img alt="CSS3" width="40" height="40" src="https://www.vectorlogo.zone/logos/typescriptlang/typescriptlang-icon.svg">
+
+
+</p>
+
 
 ## Clone Steps
 
