@@ -31,9 +31,9 @@ This repository contains all the code of the front-end of the project CAbot, a v
 
 ## Development server
 
-<p align='justify'>
+
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-</p>
+
 
 ## Code scaffolding
 

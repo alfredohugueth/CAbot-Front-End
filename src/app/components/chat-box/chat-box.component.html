@@ -1,9 +1,13 @@
-<div class="container-fluid shadow contenedorChat bg-secondary">
+<div class="container-fluid shadow contenedorChat bg-secondary h-100">
 
     <div *ngIf="servicioCarga.Cargando | async" class="loader">
         <mat-progress-bar mode="indeterminate"> </mat-progress-bar>
     </div>
+    
     <div class="container">
+        <div class="d-flex justify-content-end">
+            <button class="btn-danger" mat-button (click)="deleteMessages()"> <mat-icon>delete</mat-icon> </button>
+        </div>
         <div class="chat-p shadow">
             <cdk-virtual-scroll-viewport id="caja_mensajes" itemSize="20vh" class="caja-mensajes bg-image"
                 style="background-image: url('../../../assets/imagenes/Fondo-chat.png');">

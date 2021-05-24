@@ -119,8 +119,14 @@ export class ChatBoxComponent implements OnInit {
 
         //creamos la entrada en el localdatabase ...
         console.log('Entramos a condicional para crear el item del indexDB...');
+        // Escondemos el cuadro de entrada de datos para evitar que el usuario envie un mensaje al momento de cargar el primer mensaje ... 
+
         //Recibimos mensaje de la base de datos...
+        this.controllerInput = false;
+
         var PrimerMensaje = await this.sendMsgServ.recieveMsg();
+        this.controllerInput = true;
+
         PrimerMensaje.boot.reproducir = false;
         this.respuestas.push(PrimerMensaje);
 
@@ -524,7 +530,37 @@ export class ChatBoxComponent implements OnInit {
     this.audioOpt.stop();
     this.respuestas[ index ].boot.reproducir = false;
     this.contadorMensajes++;
-  }  
+  }
+  
+  async deleteMessages () {
+    console.log(' Se eliminan los mensajes anteriores ');
+    /* Eliminamos la coleccion de mensajes */
+
+    await db.collection('respuestas').delete();
+
+    /* Seteamos el array con las respuestas almacenadas */
+
+    this.respuestas = [];
+
+    /* Recibimos el primer mensaje del servidor ... */
+    this.controllerInput = false;
+
+    var PrimerMensaje = await this.sendMsgServ.recieveMsg();
+
+    this.controllerInput = true;
+
+    PrimerMensaje.boot.reproducir = false;
+    this.respuestas.push(PrimerMensaje);
+
+
+
+    console.log("Se realizo el push del primer mensaje de manera correcta, almacenamos respuesta en el local storage..");
+    
+    await db.collection('respuestas').set(this.respuestas);
+    
+    this.reproducirAudio( PrimerMensaje.boot.voz.data, this.respuestas.length-1 );
+
+  } 
 
 
 }
