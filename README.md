@@ -2,6 +2,16 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.0.
 
+## Description
+
+This repository contains all the code of the front-end of the project CAbot, a virtual assistant developed to answer common questions about automatic control.
+
+## Clone Steps
+
+1. Run `npm install` for install all the dependencies.
+2. Navigate to `/src/app/services/send-msgs.service.ts` and comment `the line 13` and uncomment `the line 15`.
+
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
@@ -25,3 +35,5 @@ Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protrac
 ## Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+
