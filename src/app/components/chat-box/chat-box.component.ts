@@ -552,7 +552,7 @@ export class ChatBoxComponent implements OnInit {
     PrimerMensaje.boot.reproducir = false;
     this.respuestas.push(PrimerMensaje);
 
-
+    this.contador = this.respuestas.length-1;
 
     console.log("Se realizo el push del primer mensaje de manera correcta, almacenamos respuesta en el local storage..");
     
